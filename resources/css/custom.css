@@ -1,0 +1,165 @@
+@import '@fortawesome/fontawesome-free/css/all.min.css';
+
+
+.table {
+    --bs-table-bg: #91ff00;               /* Fondo base */
+    --bs-table-striped-bg: #f8f9fa;      /* Filas alternas (gris claro) */
+    --bs-table-hover-bg: #e9ecef;        /* Hover */
+    --bs-table-border-color: #dee2e6;    /* Bordes */
+    --bs-table-border-color: #000000;
+}
+
+/* Personalización de la tarjeta */
+.card {
+    --bs-card-bg: #f5fd7c;               /* Fondo */
+    --bs-card-border-color: #dee2e6;     /* Borde */
+    --bs-card-cap-bg: #2390fc;           /* Cabecera */
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #7bce82; /* Cambia #tuColor por el código del color que prefieras */
+}
+
+
+.container-fluid {
+    background-color: #ffffff; /* Fondo del contenedor principal */
+}
+
+.card {
+    border: 1px solid #e0e0e0; /* Borde más claro */
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075); /* Sombra más suave */
+}
+
+/* Estilo para hover en los elementos del menú */
+.navbar-light .navbar-nav .nav-item:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+/* Tamaño de icono */
+.navbar-nav .nav-link i {
+    font-size: 1.2rem;
+}
+
+/* Estilo activo para la navegación */
+.navbar-nav .nav-item.active .nav-link {
+    font-weight: bold;
+}
+
+/* Ajustes para dispositivos móviles */
+@media (max-width: 992px) {
+    .navbar-nav .nav-item {
+        margin-bottom: 10px;
+    }
+}
+
+
+/* Estilo unificado para grupos de botones en acciones */
+.action-buttons {
+    display: flex;
+    gap: 3px; /* Espacio uniforme entre botones */
+    flex-wrap: wrap; /* Para que se acomoden bien en pantallas pequeñas */
+}
+
+/* Estilos uniformes para todos los botones dentro de formularios de acciones */
+.action-buttons .btn {
+    min-width: 100px; /* Mismo ancho mínimo */
+    text-align: center;
+    padding: 0.2rem 1rem;
+    font-size: 0.7rem;
+}
+
+
+.system-icon {
+    font-size: 1.3rem;
+    color: #000000;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+#card_title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #000000;
+    margin-bottom: 10px;
+}
+
+
+/* Estilo para el botón de cerrar en la tarjeta */
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+#app {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+main.py-4 {
+    flex: 1;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.login-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.login-row {
+    width: 100%;
+    max-width: 1200px;
+}
+
+.login-image-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.login-image {
+    max-width: 100%;
+    max-height: 75vh;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Personalización de la tarjeta según tus estilos personalizados */
+.card {
+    --bs-card-bg: #f5fd7c;
+    --bs-card-border-color: #dee2e6;
+    --bs-card-cap-bg: #2390fc;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.card-header {
+    background-color: #2390fc;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Ajustes para dispositivos móviles */
+@media (max-width: 767.98px) {
+    .login-image-container {
+        display: none;
+    }
+    
+    .login-form-container {
+        width: 100%;
+        padding: 0 15px;
+    }
+}
