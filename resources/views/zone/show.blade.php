@@ -21,27 +21,27 @@
                     <div class="card-body bg-white">
                         
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Id Zone:</strong>
+                                    <strong>Id Zona:</strong>
                                     {{ $zone->id_zone }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Name:</strong>
+                                    <strong>Nombre</strong>
                                     {{ $zone->name }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Location:</strong>
+                                    <strong>Ubicación</strong>
                                     {{ $zone->location }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Capacity:</strong>
+                                    <strong>Capacidad</strong>
                                     {{ $zone->capacity }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Type:</strong>
+                                    <strong>Tipo:</strong>
                                     {{ $zone->type }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Weather:</strong>
+                                    <strong>Clima:</strong>
                                     {{ $zone->weather }}
                                 </div>
 

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container d-flex align-items-center" style="height: calc(100vh - 170px);">
+<div class="container py-3">
     <div class="row justify-content-center w-100 align-items-center">
 
         <div class="col-md-6 d-none d-md-block">

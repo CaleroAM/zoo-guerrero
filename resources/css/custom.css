@@ -2,22 +2,15 @@
 
 
 .table {
-    --bs-table-bg: #91ff00;               /* Fondo base */
-    --bs-table-striped-bg: #f8f9fa;      /* Filas alternas (gris claro) */
+    --bs-table-bg: #e7e7e5;               /* Fondo base */
+    --bs-table-striped-bg: #ffffff;      /* Filas alternas */
     --bs-table-hover-bg: #e9ecef;        /* Hover */
     --bs-table-border-color: #dee2e6;    /* Bordes */
-    --bs-table-border-color: #000000;
-}
-
-/* Personalización de la tarjeta */
-.card {
-    --bs-card-bg: #f5fd7c;               /* Fondo */
-    --bs-card-border-color: #dee2e6;     /* Borde */
-    --bs-card-cap-bg: #2390fc;           /* Cabecera */
+    --bs-table-border-color: #916540;   
 }
 
 .table-striped tbody tr:nth-of-type(odd) {
-    background-color: #7bce82; /* Cambia #tuColor por el código del color que prefieras */
+    background-color: #ffffff; /* Cambia #tuColor por el código del color que prefieras */
 }
 
 
@@ -25,10 +18,7 @@
     background-color: #ffffff; /* Fondo del contenedor principal */
 }
 
-.card {
-    border: 1px solid #e0e0e0; /* Borde más claro */
-    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075); /* Sombra más suave */
-}
+
 
 /* Estilo para hover en los elementos del menú */
 .navbar-light .navbar-nav .nav-item:hover {
@@ -70,10 +60,10 @@
     font-size: 0.7rem;
 }
 
-
+/*Cabecera de la tabla*/
 .system-icon {
     font-size: 1.3rem;
-    color: #000000;
+    color: #e7e7e5;
     margin-right: 8px;
     vertical-align: middle;
 }
@@ -81,7 +71,7 @@
 #card_title {
     font-size: 1.2rem;
     font-weight: bold;
-    color: #000000;
+    color: #e7e7e5;
     margin-bottom: 10px;
 }
 
@@ -91,7 +81,7 @@ body, html {
     height: 100%;
     margin: 0;
     padding: 0;
-    overflow: hidden;
+    overflow: auto;
 }
 
 #app {
@@ -104,9 +94,9 @@ main.py-4 {
     flex: 1;
     padding-top: 0 !important;
     padding-bottom: 0 !important;
-    display: flex;
+    display: block;
     align-items: center;
-    overflow: hidden;
+    overflow: auto;
 }
 
 .login-container {
@@ -133,20 +123,21 @@ main.py-4 {
     max-height: 75vh;
     object-fit: contain;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgb(255, 255, 255);
 }
 
 /* Personalización de la tarjeta según tus estilos personalizados */
 .card {
-    --bs-card-bg: #f5fd7c;
-    --bs-card-border-color: #dee2e6;
-    --bs-card-cap-bg: #2390fc;
-    border: 1px solid #e0e0e0;
+    border: 1px solid #e0e0e0; /* Borde más claro */
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075); /* Sombra más suave */
+    --bs-card-bg: #ffffff00;
+    --bs-card-border-color: #0080ff00;
+    border: 10px solid #e0e0e0;
     box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
 }
 
 .card-header {
-    background-color: #2390fc;
+    background-color: #916540;
     color: white;
     font-weight: bold;
     text-align: center;
@@ -162,4 +153,39 @@ main.py-4 {
         width: 100%;
         padding: 0 15px;
     }
+}
+
+/*Botón de añadir o editar*/
+.btn-success{
+    --bs-btn-color: #fff;
+    --bs-btn-bg: #194b14;
+    --bs-btn-border-color: #194b14;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: rgb(21.25, 114.75, 71.4);
+    --bs-btn-hover-border-color: rgb(20, 108, 67.2);
+    --bs-btn-focus-shadow-rgb: 60, 153, 110;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: rgb(20, 108, 67.2);
+    --bs-btn-active-border-color: rgb(18.75, 101.25, 63);
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #fff;
+    --bs-btn-disabled-bg: #194b14;
+    --bs-btn-disabled-border-color: #194b14;
+}
+
+.btn-primary {
+    --bs-btn-color: #fff;
+    --bs-btn-bg: #ecbd37;
+    --bs-btn-border-color: #ecbd37;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: rgb(215, 127, 11);
+    --bs-btn-hover-border-color: rgb(215, 127, 11);
+    --bs-btn-focus-shadow-rgb: 49, 132, 253;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: rgb(215, 127, 11);
+    --bs-btn-active-border-color: rgb(9.75, 82.5, 189.75);
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #fff;
+    --bs-btn-disabled-bg: #ecbd37;
+    --bs-btn-disabled-border-color: #ecbd37;
 }

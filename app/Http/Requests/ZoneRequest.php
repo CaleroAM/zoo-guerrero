@@ -22,12 +22,11 @@ class ZoneRequest extends FormRequest
     public function rules(): array
     {
         return [
-			'id_zone' => 'required',
-			'name' => 'required|string',
-			'location' => 'required|string',
-			'capacity' => 'required',
+			'name' => 'required|string|max:40',
+			'location' => 'required|string|max:40',
+			'capacity' => 'required|integer|min:1',
 			'type' => 'required|string',
-			'weather' => 'required|string',
+			'weather' => 'required|string|max:40',
         ];
     }
 }

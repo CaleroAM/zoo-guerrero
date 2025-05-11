@@ -21,27 +21,27 @@
                     <div class="card-body bg-white">
                         
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Rfc:</strong>
+                                    <strong>RFC:</strong>
                                     {{ $supplier->rfc }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Name:</strong>
+                                    <strong>Nombre:</strong>
                                     {{ $supplier->name }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Phone:</strong>
+                                    <strong>Teléfono:</strong>
                                     {{ $supplier->phone }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Mail:</strong>
+                                    <strong>Correo:</strong>
                                     {{ $supplier->mail }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Addres:</strong>
+                                    <strong>Dirección:</strong>
                                     {{ $supplier->addres }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Type Sup:</strong>
+                                    <strong>Tipo de proveedor:</strong>
                                     {{ $supplier->type_sup }}
                                 </div>
 

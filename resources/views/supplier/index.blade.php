@@ -2,29 +2,80 @@
 
 @section('template_title')
     Suppliers
+    <link href="{{ asset('../css/custom.css') }}" rel="stylesheet">
+    <!-- Incluir CSS de Toastr -->
+    <link href="{{ asset('node_modules/toastr/build/toastr.min.css') }}" rel="stylesheet">
 @endsection
 
 @section('content')
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12">
+                <!-- Tarjeta principal -->
                 <div class="card">
-                    <div class="card-header">
-                        <div style="display: flex; justify-content: space-between; align-items: center;">
-
-                            <span id="card_title">
-                                {{ __('Suppliers') }}
-                            </span>
-
-                             <div class="float-right">
-                                <a href="{{ route('suppliers.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                  {{ __('Create New') }}
-                                </a>
-                              </div>
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <span id="card_title">
+                            {{ __('Proveedores') }}
+                            <i class="fas fa-truck ms-1 system-ico"></i>
+                        </span>
+                        <button id="add-suppliers-btn" class="btn btn-success btn-sm">
+                            <i class="fa fa-plus"></i> Añadir proveedor
+                        </button>
+                    </div>
+                    <!-- Buscador -->
+                    <div class="card-body p-4">
+                        <div class="input-group mb-3">
+                            <input type="text" id="search-input" class="form-control" placeholder="Buscar Zonas...Ej. Zona, sector, cantidad, tipo, clima.">
                         </div>
                     </div>
+
+                    <!-- Formulario para crear/editar especies -->
+                    <div id="suppliersFormContainer" style="display: none;" class="card-body bg-light">
+                        <form id="suppliers-form" action="{{ route('suppliers.store') }}" method="POST" 
+                              data-store-route="{{ route('suppliers.store') }}" 
+                              data-update-route="{{ url('suppliers') }}/:id">
+                            @csrf
+                            <input type="hidden" name="_method" id="form-method" value="POST">
+                            <input type="hidden" name="id_zone" id="id_zone" value="">
+    
+                            <div class="form-group mb-2 mb20">
+                                <label for="rfc" class="form-label">{{ __('RFC') }}</label>
+                                <input type="text" name="rfc" class="form-control" id="rfc" placeholder="RFC de la empresa">
+                                {!! $errors->first('rfc', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
+                            </div>
+                            <div class="form-group mb-2 mb20">
+                                <label for="name" class="form-label">{{ __('Nombre') }}</label>
+                                <input type="text" name="name" class="form-control" id="name" placeholder="Nombre de la empresa">
+                                {!! $errors->first('name', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
+                            </div>
+                            <div class="form-group mb-2 mb20">
+                                <label for="phone" class="form-label">{{ __('Teléfono') }}</label>
+                                <input type="text" name="phone" class="form-control" id="phone" placeholder="Número de teléfono">
+                                {!! $errors->first('phone', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
+                            </div>
+                            <div class="form-group mb-2 mb20">
+                                <label for="mail" class="form-label">{{ __('Correo') }}</label>
+                                <input type="text" name="mail" class="form-control" id="mail" placeholder="Correo electrónico">
+                                {!! $errors->first('mail', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
+                            </div>
+                            <div class="form-group mb-2 mb20">
+                                <label for="addres" class="form-label">{{ __('Dirección') }}</label>
+                                <input type="text" name="addres" class="form-control" id="addres" placeholder="Dirección">
+                                {!! $errors->first('addres', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
+                            </div>
+                            <div class="form-group mb-2 mb20">
+                                <label for="type_sup" class="form-label">{{ __('Tipo de proveedor') }}</label>
+                                <input type="text" name="type_sup" class="form-control" id="type_sup" placeholder="Tipo de proveedor">
+                                {!! $errors->first('type_sup', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
+                            </div>
+                            <button type="submit" class="btn btn-primary">Guardar</button>
+                            <button type="button" id="cancel-form-btn" class="btn btn-secondary">Cancelar</button>
+                        
+                        </form>
+                    </div>
+              
                     @if ($message = Session::get('success'))
-                        <div class="alert alert-success m-4">
+                        <div class="alert alert-success m-4" style="display: none;">
                             <p>{{ $message }}</p>
                         </div>
                     @endif
@@ -36,36 +87,46 @@
                                     <tr>
                                         <th>No</th>
                                         
-									<th >Rfc</th>
-									<th >Name</th>
-									<th >Phone</th>
-									<th >Mail</th>
-									<th >Addres</th>
-									<th >Type Sup</th>
+									<th >RFC</th>
+									<th >Nombre</th>
+									<th >Teléfono</th>
+									<th >Correo</th>
+									<th >Dirección</th>
+									<th >Tipo de proveedor</th>
 
                                         <th></th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id='suppliers-table-body'>
                                     @foreach ($suppliers as $supplier)
                                         <tr>
-                                            <td>{{ ++$i }}</td>
-                                            
-										<td >{{ $supplier->rfc }}</td>
-										<td >{{ $supplier->name }}</td>
-										<td >{{ $supplier->phone }}</td>
-										<td >{{ $supplier->mail }}</td>
-										<td >{{ $supplier->addres }}</td>
-										<td >{{ $supplier->type_sup }}</td>
+
+                                            <td>{{ ++$i }}</td>    
+                                            <td >{{ $supplier->rfc }}</td>
+                                            <td >{{ $supplier->name }}</td>
+                                            <td >{{ $supplier->phone }}</td>
+                                            <td >{{ $supplier->mail }}</td>
+                                            <td >{{ $supplier->addres }}</td>
+                                            <td >{{ $supplier->type_sup }}</td>
 
                                             <td>
-                                                <form action="{{ route('suppliers.destroy', $supplier->id_supplier) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('suppliers.show', $supplier->id_supplier) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('suppliers.edit', $supplier->id_supplier) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm" onclick="event.preventDefault(); confirm('Are you sure to delete?') ? this.closest('form').submit() : false;"><i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>
-                                                </form>
+                                                <div class="action-buttons d-flex gap-1">
+                                                    <a class="btn btn-sm btn-primary" href="{{ route('suppliers.show', $supplier->rfc) }}">
+                                                        <i class="fa fa-eye"></i> {{ __('Mostrar') }}
+                                                    </a>
+                                                    <button class="btn btn-sm btn-success edit-suppliers-btn" 
+                                                            data-rfc="{{ $supplier->rfc }}"
+                                                            data-name="{{ $supplier->name }}"
+                                                            data-phone="{{ $supplier->phone }}"
+                                                            data-mail="{{ $supplier->mail }}"
+                                                            data-addres="{{ $supplier->addres }}"
+                                                            data-type_sup="{{ $supplier->type_sup }}">
+                                                        <i class="fa fa-edit"></i> {{ __('Editar') }}
+                                                    </button>
+                                                    <x-delete-button :action="route('suppliers.destroy', $supplier->rfc)" />
+                                                </div>
+                                            </td>
+                                                </div>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -78,4 +139,6 @@
             </div>
         </div>
     </div>
+
+@vite(['resources/js/suppliers.js'])
 @endsection

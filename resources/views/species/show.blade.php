@@ -11,29 +11,29 @@
                 <div class="card">
                     <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
                         <div class="float-left">
-                            <span class="card-title">{{ __('Show') }} Species</span>
+                            <span class="card-title">{{ __('Mostrar') }} Especies</span>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary btn-sm" href="{{ route('species.index') }}"> {{ __('Back') }}</a>
+                            <a class="btn btn-primary btn-sm" href="{{ route('species.index') }}"> {{ __('Regresar') }}</a>
                         </div>
                     </div>
 
                     <div class="card-body bg-white">
                         
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Id Specie:</strong>
+                                    <strong>Id Especie:</strong>
                                     {{ $species->id_specie }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Name Scientific:</strong>
+                                    <strong>Nombre científico:</strong>
                                     {{ $species->name_scientific }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Name Common:</strong>
+                                    <strong>Nombre común:</strong>
                                     {{ $species->name_common }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Family:</strong>
+                                    <strong>Familia:</strong>
                                     {{ $species->family }}
                                 </div>
 

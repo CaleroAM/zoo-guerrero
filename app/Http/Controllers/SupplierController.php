@@ -6,6 +6,7 @@ use App\Models\Supplier;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests\SupplierRequest;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
@@ -74,11 +75,18 @@ class SupplierController extends Controller
             ->with('success', 'Supplier updated successfully');
     }
 
-    public function destroy($id): RedirectResponse
+    public function destroy($id): RedirectResponse | JsonResponse
     {
-        Supplier::find($id)->delete();
+        $suppliers = Supplier::find($id);
+        $suppliers->delete();
+
+        if (request()->expectsJson()) {
+            return response()->json([
+                'message' => 'Proveedor eliminado exitosamente'
+            ]);
+        }
 
         return Redirect::route('suppliers.index')
-            ->with('success', 'Supplier deleted successfully');
+            ->with('success', 'Proveedor eliminado exitosamente');
     }
 }

@@ -31,6 +31,10 @@ class Zone extends Model
      *
      * @var array<int, string>
      */
+    protected $table = 'zones';
+    protected $primaryKey = 'id_zone';
+    public $incrementing = true;
+    public $keyType = 'int';
     protected $fillable = ['id_zone', 'name', 'location', 'capacity', 'type', 'weather'];
 
 

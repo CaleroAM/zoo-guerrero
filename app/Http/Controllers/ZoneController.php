@@ -6,6 +6,7 @@ use App\Models\Zone;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests\ZoneRequest;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
@@ -35,12 +36,19 @@ class ZoneController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(ZoneRequest $request): RedirectResponse
+    public function store(ZoneRequest $request): RedirectResponse |JsonResponse
     {
-        Zone::create($request->validated());
+        $zones = Zone::create($request->validated());
+
+        if ($request->expectsJson()) {
+            return response()->json([
+                'message' => 'Zona creada exitosamente',
+                'zones' => $zones
+            ], 201);
+        }
 
         return Redirect::route('zones.index')
-            ->with('success', 'Zone created successfully.');
+            ->with('success', 'Zona creada exitosamente.');
     }
 
     /**
@@ -66,19 +74,34 @@ class ZoneController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(ZoneRequest $request, Zone $zone): RedirectResponse
+    public function update(ZoneRequest $request, $id): RedirectResponse | JsonResponse
     {
+        $zone = Zone::find($id);
         $zone->update($request->validated());
 
+        if ($request->expectsJson()) {
+            return response()->json([
+                'message' => 'Zona actualizada exitosamente',
+                'zones' => $zone
+            ]);
+        }
+
         return Redirect::route('zones.index')
-            ->with('success', 'Zone updated successfully');
+            ->with('success', 'Zona actualizada exitosamente');
     }
 
-    public function destroy($id): RedirectResponse
+    public function destroy($id): RedirectResponse | JsonResponse
     {
-        Zone::find($id)->delete();
+        $zones = Zone::find($id);
+        $zones->delete();
+
+        if (request()->expectsJson()) {
+            return response()->json([
+                'message' => 'Zona eliminada exitosamente'
+            ]);
+        }
 
         return Redirect::route('zones.index')
-            ->with('success', 'Zone deleted successfully');
+            ->with('success', 'Zona eliminada exitosamente');
     }
 }

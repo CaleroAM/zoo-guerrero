@@ -31,6 +31,10 @@ class Supplier extends Model
      *
      * @var array<int, string>
      */
+    protected $table = 'suppliers';
+    protected $primaryKey = 'rfc';
+    public $incrementing = false;
+    protected $keyType = 'string';
     protected $fillable = ['rfc', 'name', 'phone', 'mail', 'addres', 'type_sup'];
 
 

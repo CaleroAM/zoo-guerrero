@@ -9,19 +9,3 @@
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
-
-/* public/css/custom.css */
-/* Personalización de la tabla */
-.table {
-    --bs-table-bg: #ff0000;               /* Fondo base */
-    --bs-table-striped-bg: #f8f9fa;      /* Filas alternas (gris claro) */
-    --bs-table-hover-bg: #e9ecef;        /* Hover */
-    --bs-table-border-color: #dee2e6;    /* Bordes */
-}
-
-/* Personalización de la tarjeta */
-.card {
-    --bs-card-bg: #0026ff;               /* Fondo */
-    --bs-card-border-color: #dee2e6;     /* Borde */
-    --bs-card-cap-bg: #f8f9fa;           /* Cabecera */
-}

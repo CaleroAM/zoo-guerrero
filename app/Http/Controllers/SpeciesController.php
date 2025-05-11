@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\SpeciesRequest;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use Illuminate\Http\JsonResponse;
 
 class SpeciesController extends Controller
 {
@@ -35,12 +36,19 @@ class SpeciesController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(SpeciesRequest $request): RedirectResponse
+    public function store(SpeciesRequest $request): RedirectResponse | JsonResponse
     {
-        Species::create($request->validated());
+        $species = Species::create($request->validated());
+
+        if ($request->expectsJson()) {
+            return response()->json([
+                'message' => 'Especie creada exitosamente',
+                'species' => $species
+            ], 201);
+        }
 
         return Redirect::route('species.index')
-            ->with('success', 'Species created successfully.');
+            ->with('success', 'Especie creada exitosamente');
     }
 
     /**
@@ -66,19 +74,39 @@ class SpeciesController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(SpeciesRequest $request, Species $species): RedirectResponse
+    public function update(SpeciesRequest $request, $id): RedirectResponse | JsonResponse
     {
+        $species = Species::find($id);
         $species->update($request->validated());
 
+        // Responder según el tipo de solicitud (AJAX o normal)
+        if ($request->expectsJson()) {
+            return response()->json([
+                'message' => 'Especie actualizada exitosamente',
+                'species' => $species
+            ]);
+        }
+
         return Redirect::route('species.index')
-            ->with('success', 'Species updated successfully');
+            ->with('success', 'Especie actualizada exitosamente');
     }
 
-    public function destroy($id): RedirectResponse
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy($id): RedirectResponse | JsonResponse
     {
-        Species::find($id)->delete();
+        $species = Species::find($id);
+        $species->delete();
+
+        if (request()->expectsJson()) {
+            return response()->json([
+                'message' => 'Especie eliminada exitosamente'
+            ]);
+        }
 
         return Redirect::route('species.index')
-            ->with('success', 'Species deleted successfully');
-    }
+            ->with('success', 'Especie eliminada exitosamente');
+    }  
+
 }

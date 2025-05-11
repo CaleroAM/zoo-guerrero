@@ -13,9 +13,11 @@
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+
     @yield('styles')
     <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    @vite(['resources/sass/app.scss', 'resources/js/app.js', 'resources/js/components/notifications.js'])
 </head>
 <body>
     <div id="app">
@@ -104,6 +106,7 @@
         </main>
     </div>
     @vite(['resources/css/custom.css'])
+    @stack('scripts')
 
     <style>
 
@@ -111,5 +114,13 @@
           text-decoration: none;
         }
       </style>
+
+        <script>
+            window.laravelSuccess = "{{ session('success') }}";
+            window.laravelError = "{{ session('error') }}";
+            window.laravelInfo = "{{ session('info') }}";
+            window.laravelWarning = "{{ session('warning') }}";
+        </script>
+
 </body>
 </html>
