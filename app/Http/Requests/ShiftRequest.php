@@ -22,7 +22,6 @@ class ShiftRequest extends FormRequest
     public function rules(): array
     {
         return [
-			'id_shift' => 'required',
 			'description' => 'required|string',
 			'hour_s' => 'required',
 			'hour_e' => 'required',

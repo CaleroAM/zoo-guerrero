@@ -19,8 +19,9 @@ class ZoneController extends Controller
     {
         $zones = Zone::paginate();
 
-        return view('zone.index', compact('zones'))
-            ->with('i', ($request->input('page', 1) - 1) * $zones->perPage());
+        return view('zones.index', compact('zones'))
+            ->with('i', ($request->input('page', 1) - 1) * $zones->perPage())
+            ->with('zone', null);
     }
 
     /**
@@ -30,7 +31,7 @@ class ZoneController extends Controller
     {
         $zone = new Zone();
 
-        return view('zone.create', compact('zone'));
+        return view('zones.create', compact('zone'));
     }
 
     /**
@@ -58,7 +59,7 @@ class ZoneController extends Controller
     {
         $zone = Zone::find($id);
 
-        return view('zone.show', compact('zone'));
+        return view('zones.show', compact('zone'));
     }
 
     /**
@@ -67,8 +68,8 @@ class ZoneController extends Controller
     public function edit($id): View
     {
         $zone = Zone::find($id);
-
-        return view('zone.edit', compact('zone'));
+        
+        return view('zones.edit', compact('zone'));
     }
 
     /**
@@ -79,13 +80,6 @@ class ZoneController extends Controller
         $zone = Zone::find($id);
         $zone->update($request->validated());
 
-        if ($request->expectsJson()) {
-            return response()->json([
-                'message' => 'Zona actualizada exitosamente',
-                'zones' => $zone
-            ]);
-        }
-
         return Redirect::route('zones.index')
             ->with('success', 'Zona actualizada exitosamente');
     }
@@ -94,12 +88,6 @@ class ZoneController extends Controller
     {
         $zones = Zone::find($id);
         $zones->delete();
-
-        if (request()->expectsJson()) {
-            return response()->json([
-                'message' => 'Zona eliminada exitosamente'
-            ]);
-        }
 
         return Redirect::route('zones.index')
             ->with('success', 'Zona eliminada exitosamente');

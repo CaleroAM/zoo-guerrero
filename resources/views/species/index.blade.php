@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    
+    Species
     <link href="{{ asset('../css/custom.css') }}" rel="stylesheet">
     <!-- Incluir CSS de Toastr -->
     <link href="{{ asset('node_modules/toastr/build/toastr.min.css') }}" rel="stylesheet">
@@ -34,26 +34,12 @@
                 <div id="speciesFormContainer" style="display: none;" class="card-body bg-light">
                     <form id="species-form" action="{{ route('species.store') }}" method="POST" 
                           data-store-route="{{ route('species.store') }}" 
-                          data-update-route="{{ url('species') }}/:id">
+                          data-update-route="{{ route('species.update', ':id') }}">
                         @csrf
                         <input type="hidden" name="_method" id="form-method" value="POST">
                         <input type="hidden" name="id_specie" id="id_specie" value="">
 
-                        <div class="form-group mb-2 mb20">
-                            <label for="name_scientific" class="form-label">{{ __('Name Scientific') }}</label>
-                            <input type="text" name="name_scientific" class="form-control" id="name_scientific" placeholder="Nombre científico">
-                            {!! $errors->first('name_scientific', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
-                        </div>
-                        <div class="form-group mb-2 mb20">
-                            <label for="name_common" class="form-label">{{ __('Name Common') }}</label>
-                            <input type="text" name="name_common" class="form-control" id="name_common" placeholder="Nombre común">
-                            {!! $errors->first('name_common', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
-                        </div>
-                        <div class="form-group mb-2 mb20">
-                            <label for="family" class="form-label">{{ __('Family') }}</label>
-                            <input type="text" name="family" class="form-control" id="family" placeholder="Familia">
-                            {!! $errors->first('family', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
-                        </div>
+                        @include('species.form')
 
                         <button type="submit" class="btn btn-primary">Guardar</button>
                         <button type="button" id="cancel-form-btn" class="btn btn-secondary">Cancelar</button>
@@ -82,26 +68,26 @@
                                 </tr>
                             </thead>
                             <tbody id="species-table-body">
-                                @foreach ($species as $index => $species)
+                                @foreach ($species as $specie)
                                     <tr>
-                                        <td>{{ $index + 1 }}</td>
-                                        <td>{{ $species->id_specie }}</td>
-                                        <td>{{ $species->name_scientific }}</td>
-                                        <td>{{ $species->name_common }}</td>
-                                        <td>{{ $species->family }}</td>
+                                        <td>{{ ++$i }}</td>
+                                        <td>{{ $specie->id_specie }}</td>
+                                        <td>{{ $specie->name_scientific }}</td>
+                                        <td>{{ $specie->name_common }}</td>
+                                        <td>{{ $specie->family }}</td>
                                         <td>
                                             <div class="action-buttons d-flex gap-1">
-                                                <a class="btn btn-sm btn-primary" href="{{ route('species.show', $species->id_specie) }}">
+                                                <a class="btn btn-sm btn-primary" href="{{ route('species.show', $specie->id_specie) }}">
                                                     <i class="fa fa-eye"></i> {{ __('Mostrar') }}
                                                 </a>
                                                 <button class="btn btn-sm btn-success edit-species-btn" 
-                                                        data-id="{{ $species->id_specie }}"
-                                                        data-scientific="{{ $species->name_scientific }}"
-                                                        data-common="{{ $species->name_common }}"
-                                                        data-family="{{ $species->family }}">
+                                                        data-id_specie="{{ $specie->id_specie }}"
+                                                        data-scientific="{{ $specie->name_scientific }}"
+                                                        data-common="{{ $specie->name_common }}"
+                                                        data-family="{{ $specie->family }}">
                                                     <i class="fa fa-edit"></i> {{ __('Editar') }}
                                                 </button>
-                                                <x-delete-button :action="route('species.destroy', $species->id_specie)" />
+                                                <x-delete-button :action="route('species.destroy', $specie->id_specie)" />
                                             </div>
                                         </td>
                                     </tr>

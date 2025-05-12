@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    {{ $supplier->name ?? __('Show') . " " . __('Supplier') }}
+    {{ $zone->name ?? __('Show') . " " . __('Zone') }}
 @endsection
 
 @section('content')
@@ -11,38 +11,38 @@
                 <div class="card">
                     <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
                         <div class="float-left">
-                            <span class="card-title">{{ __('Show') }} Supplier</span>
+                            <span class="card-title">{{ __('Mostrar') }} Zona</span>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary btn-sm" href="{{ route('suppliers.index') }}"> {{ __('Back') }}</a>
+                            <a class="btn btn-primary btn-sm" href="{{ route('zones.index') }}"> {{ __('Regresar') }}</a>
                         </div>
                     </div>
 
                     <div class="card-body bg-white">
                         
                                 <div class="form-group mb-2 mb20">
-                                    <strong>RFC:</strong>
-                                    {{ $supplier->rfc }}
+                                    <strong>Id Zona:</strong>
+                                    {{ $zone->id_zone }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Nombre:</strong>
-                                    {{ $supplier->name }}
+                                    <strong>Nombre</strong>
+                                    {{ $zone->name }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Teléfono:</strong>
-                                    {{ $supplier->phone }}
+                                    <strong>Ubicación</strong>
+                                    {{ $zone->location }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Correo:</strong>
-                                    {{ $supplier->mail }}
+                                    <strong>Capacidad</strong>
+                                    {{ $zone->capacity }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Dirección:</strong>
-                                    {{ $supplier->addres }}
+                                    <strong>Tipo:</strong>
+                                    {{ $zone->type }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Tipo de proveedor:</strong>
-                                    {{ $supplier->type_sup }}
+                                    <strong>Clima:</strong>
+                                    {{ $zone->weather }}
                                 </div>
 
                     </div>

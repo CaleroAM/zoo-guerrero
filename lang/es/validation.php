@@ -18,6 +18,15 @@ return [
     'mail' => 'correo',
     'addres' => 'dirección',
     'type_sup' => 'tipo de proveedor',
+
+    'description' => 'descripción',
+    'hour_s' => 'hora de inicio',
+    'hour_e' => 'hora de fin',
+
+    'content' => 'contenido actual',
+    'total_amount' => 'contenido total',
+    'cost' => 'costo',
+    'fk_supplier' => 'proveedor',
     
     
     ],

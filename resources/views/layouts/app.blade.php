@@ -88,6 +88,7 @@
         </nav>
         @php
         $navRoutes = [
+            'shifts.index',
             'animals.index',
             'species.index',
             'zones.index',

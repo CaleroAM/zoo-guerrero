@@ -38,36 +38,7 @@
                             <input type="hidden" name="_method" id="form-method" value="POST">
                             <input type="hidden" name="id_zone" id="id_zone" value="">
     
-                            <div class="form-group mb-2 mb20">
-                                <label for="rfc" class="form-label">{{ __('RFC') }}</label>
-                                <input type="text" name="rfc" class="form-control" id="rfc" placeholder="RFC de la empresa">
-                                {!! $errors->first('rfc', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
-                            </div>
-                            <div class="form-group mb-2 mb20">
-                                <label for="name" class="form-label">{{ __('Nombre') }}</label>
-                                <input type="text" name="name" class="form-control" id="name" placeholder="Nombre de la empresa">
-                                {!! $errors->first('name', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
-                            </div>
-                            <div class="form-group mb-2 mb20">
-                                <label for="phone" class="form-label">{{ __('Teléfono') }}</label>
-                                <input type="text" name="phone" class="form-control" id="phone" placeholder="Número de teléfono">
-                                {!! $errors->first('phone', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
-                            </div>
-                            <div class="form-group mb-2 mb20">
-                                <label for="mail" class="form-label">{{ __('Correo') }}</label>
-                                <input type="text" name="mail" class="form-control" id="mail" placeholder="Correo electrónico">
-                                {!! $errors->first('mail', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
-                            </div>
-                            <div class="form-group mb-2 mb20">
-                                <label for="addres" class="form-label">{{ __('Dirección') }}</label>
-                                <input type="text" name="addres" class="form-control" id="addres" placeholder="Dirección">
-                                {!! $errors->first('addres', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
-                            </div>
-                            <div class="form-group mb-2 mb20">
-                                <label for="type_sup" class="form-label">{{ __('Tipo de proveedor') }}</label>
-                                <input type="text" name="type_sup" class="form-control" id="type_sup" placeholder="Tipo de proveedor">
-                                {!! $errors->first('type_sup', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
-                            </div>
+                            @include('suppliers.form')
                             <button type="submit" class="btn btn-primary">Guardar</button>
                             <button type="button" id="cancel-form-btn" class="btn btn-secondary">Cancelar</button>
                         

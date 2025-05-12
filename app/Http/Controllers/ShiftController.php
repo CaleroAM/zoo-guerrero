@@ -6,6 +6,7 @@ use App\Models\Shift;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests\ShiftRequest;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
@@ -18,8 +19,9 @@ class ShiftController extends Controller
     {
         $shifts = Shift::paginate();
 
-        return view('shift.index', compact('shifts'))
-            ->with('i', ($request->input('page', 1) - 1) * $shifts->perPage());
+        return view('shifts.index', compact('shifts'))
+            ->with('i', ($request->input('page', 1) - 1) * $shifts->perPage())
+            ->with('shift',null);
     }
 
     /**
@@ -35,12 +37,18 @@ class ShiftController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(ShiftRequest $request): RedirectResponse
+    public function store(ShiftRequest $request): RedirectResponse |JsonResponse
     {
-        Shift::create($request->validated());
+        $shifts = Shift::create($request->validated());
 
+        if($request->expectsJson()){
+            return response()->json([
+                "message" => 'Turno creado exitosamente',
+                "shifts" => $shifts
+            ], 200);
+        }
         return Redirect::route('shifts.index')
-            ->with('success', 'Shift created successfully.');
+            ->with('success', 'Turno creada exitosament');
     }
 
     /**
@@ -50,7 +58,7 @@ class ShiftController extends Controller
     {
         $shift = Shift::find($id);
 
-        return view('shift.show', compact('shift'));
+        return view('shifts.show', compact('shift'));
     }
 
     /**
@@ -60,25 +68,27 @@ class ShiftController extends Controller
     {
         $shift = Shift::find($id);
 
-        return view('shift.edit', compact('shift'));
+        return view('shifts.edit', compact('shift'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(ShiftRequest $request, Shift $shift): RedirectResponse
-    {
+    public function update(ShiftRequest $request, $id): RedirectResponse|JsonResponse
+    {   
+        $shift = Shift::find($id);
         $shift->update($request->validated());
 
         return Redirect::route('shifts.index')
-            ->with('success', 'Shift updated successfully');
+            ->with('success', 'Turno actualizada exitosamente');
     }
 
-    public function destroy($id): RedirectResponse
+    public function destroy($id): RedirectResponse|JsonResponse
     {
-        Shift::find($id)->delete();
+        $shifts = Shift::find($id);
+        $shifts->delete();
 
         return Redirect::route('shifts.index')
-            ->with('success', 'Shift deleted successfully');
+            ->with('success', 'Turno eliminado exitosamente');
     }
 }

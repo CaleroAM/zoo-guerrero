@@ -13,6 +13,8 @@ export default defineConfig({
                 'resources/js/species.js',
                 'resources/js/zones.js',
                 'resources/js/suppliers.js',
+                'resources/js/shifts.js',
+                'resources/js/foods.js',
                 'resources/js/components/notifications.js',
             ],
             refresh: true,

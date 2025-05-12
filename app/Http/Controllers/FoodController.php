@@ -6,6 +6,7 @@ use App\Models\Food;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests\FoodRequest;
+use App\Models\Supplier;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
@@ -16,11 +17,15 @@ class FoodController extends Controller
      */
     public function index(Request $request): View
     {
-        $foods = Food::paginate();
+        $foods = Food::paginate(); 
+        $suppliers = Supplier::all();
 
-        return view('foods.index', compact('foods'))
-            ->with('i', ($request->input('page', 1) - 1) * $foods->perPage());
+        return view('foods.index',compact('foods', 'suppliers'))
+            ->with('i', ($request->input('page', 1) - 1) * $foods->perPage())
+            ->with('food', null);
+
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -28,8 +33,8 @@ class FoodController extends Controller
     public function create(): View
     {
         $foods = new Food();
-
-        return view('foods.create', compact('foods'));
+        $suppliers = Supplier::all();
+        return view('foods.create', compact('foods', 'suppliers'));
     }
 
     /**
@@ -54,25 +59,28 @@ class FoodController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified resource.---------------
      */
     public function edit($id): View
     {
-        $foods = Food::find($id);
-
-        return view('foods.edit', compact('foods'));
+        $food = Food::find($id);
+        $suppliers = Supplier::all();
+        return view('foods.edit', compact('food', 'suppliers'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(FoodRequest $request, Food $foods): RedirectResponse
-    {
-        $foods->update($request->validated());
+    public function update(FoodRequest $request, $id): RedirectResponse
+{
+    $food = Food::findOrFail($id); 
 
-        return Redirect::route('foods.index')
-            ->with('success', 'Food updated successfully');
-    }
+    $food->update($request->validated());
+
+    return Redirect::route('foods.index')
+        ->with('success', 'Food updated successfully');
+}
+
 
     public function destroy($id): RedirectResponse
     {

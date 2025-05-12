@@ -11,29 +11,29 @@
                 <div class="card">
                     <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
                         <div class="float-left">
-                            <span class="card-title">{{ __('Show') }} Shift</span>
+                            <span class="card-title">{{ __('Mostrar') }} Turno</span>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary btn-sm" href="{{ route('shifts.index') }}"> {{ __('Back') }}</a>
+                            <a class="btn btn-primary btn-sm" href="{{ route('shifts.index') }}"> {{ __('Regresar') }}</a>
                         </div>
                     </div>
 
                     <div class="card-body bg-white">
                         
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Id Shift:</strong>
+                                    <strong>Id Turno:</strong>
                                     {{ $shift->id_shift }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Description:</strong>
+                                    <strong>Descripción:</strong>
                                     {{ $shift->description }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Hour S:</strong>
+                                    <strong>Hora de inicio:</strong>
                                     {{ $shift->hour_s }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Hour E:</strong>
+                                    <strong>Hora de fin:</strong>
                                     {{ $shift->hour_e }}
                                 </div>
 

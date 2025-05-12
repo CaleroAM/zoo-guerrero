@@ -25,15 +25,21 @@
                     </a>
                 </li>
                 <li class="nav-item mx-2">
-                    <a class="nav-link text-center" href="{{ route('foods.index') }}">
-                        <i class="fas fa-utensils d-block mb-1"></i>
-                        <span>Alimentos</span>
-                    </a>
-                </li>
-                <li class="nav-item mx-2">
                     <a class="nav-link text-center" href="{{ route('suppliers.index') }}">
                         <i class="fas fa-truck d-block mb-1"></i>
                         <span>Proveedores</span>
+                    </a>
+                </li>
+                <li class="nav-item mx-2">
+                    <a class="nav-link text-center" href="{{ route('shifts.index') }}">
+                        <i class="fas fa-clock d-block mb-1"></i>
+                        <span>Turnos</span>
+                    </a>
+                </li>
+                                <li class="nav-item mx-2">
+                    <a class="nav-link text-center" href="{{ route('foods.index') }}">
+                        <i class="fas fa-apple-alt d-block mb-1"></i>
+                        <span>Alimentos</span>
                     </a>
                 </li>
                 <li class="nav-item mx-2">

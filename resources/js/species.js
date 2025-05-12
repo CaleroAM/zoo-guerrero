@@ -35,7 +35,7 @@ window.cancelForm = function () {
     }
 };
 
-window.editSpecies = function (id, nameScientific, nameCommon, family) {
+window.editSpecies = function (id_specie, nameScientific, nameCommon, family) {
     const formContainer = document.getElementById('speciesFormContainer');
     const form = document.getElementById('species-form');
 
@@ -43,10 +43,10 @@ window.editSpecies = function (id, nameScientific, nameCommon, family) {
         formContainer.style.display = 'block';
 
         const updateUrlBase = form.getAttribute('data-update-route');
-        form.setAttribute('action', updateUrlBase.replace(':id', id));
+        form.setAttribute('action', updateUrlBase.replace(':id', id_specie));
         document.getElementById('form-method').value = 'PUT';
 
-        document.getElementById('id_specie').value = id;
+        document.getElementById('id_specie').value = id_specie;
         document.getElementById('name_scientific').value = nameScientific;
         document.getElementById('name_common').value = nameCommon;
         document.getElementById('family').value = family;
@@ -138,11 +138,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const editButtons = document.querySelectorAll('.edit-species-btn');
     editButtons.forEach(button => {
         button.addEventListener('click', function () {
-            const id = this.getAttribute('data-id');
+            const id_specie = this.getAttribute('data-id_specie');
             const nameScientific = this.getAttribute('data-scientific');
             const nameCommon = this.getAttribute('data-common');
             const family = this.getAttribute('data-family');
-            window.editSpecies(id, nameScientific, nameCommon, family);
+            window.editSpecies(id_specie, nameScientific, nameCommon, family);
         });
     });
 

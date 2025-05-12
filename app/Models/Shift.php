@@ -31,6 +31,10 @@ class Shift extends Model
      *
      * @var array<int, string>
      */
+    protected $table = 'shifts';
+    protected $primaryKey = 'id_shift';
+    public $incrementing = true;
+    protected $keyType = 'int';
     protected $fillable = ['id_shift', 'description', 'hour_s', 'hour_e'];
 
 

@@ -19,8 +19,9 @@ class SupplierController extends Controller
     {
         $suppliers = Supplier::paginate();
 
-        return view('supplier.index', compact('suppliers'))
-            ->with('i', ($request->input('page', 1) - 1) * $suppliers->perPage());
+        return view('suppliers.index', compact('suppliers'))
+            ->with('i', ($request->input('page', 1) - 1) * $suppliers->perPage())
+            ->with('supplier', null);
     }
 
     /**
@@ -30,7 +31,7 @@ class SupplierController extends Controller
     {
         $supplier = new Supplier();
 
-        return view('supplier.create', compact('supplier'));
+        return view('suppliers.create', compact('supplier'));
     }
 
     /**
@@ -51,7 +52,7 @@ class SupplierController extends Controller
     {
         $supplier = Supplier::find($id);
 
-        return view('supplier.show', compact('supplier'));
+        return view('suppliers.show', compact('supplier'));
     }
 
     /**
@@ -61,7 +62,7 @@ class SupplierController extends Controller
     {
         $supplier = Supplier::find($id);
 
-        return view('supplier.edit', compact('supplier'));
+        return view('suppliers.edit', compact('supplier'));
     }
 
     /**
@@ -79,12 +80,6 @@ class SupplierController extends Controller
     {
         $suppliers = Supplier::find($id);
         $suppliers->delete();
-
-        if (request()->expectsJson()) {
-            return response()->json([
-                'message' => 'Proveedor eliminado exitosamente'
-            ]);
-        }
 
         return Redirect::route('suppliers.index')
             ->with('success', 'Proveedor eliminado exitosamente');

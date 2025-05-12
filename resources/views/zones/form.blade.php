@@ -2,8 +2,7 @@
     <div class="col-md-12">
         
         <div class="form-group mb-2 mb20">
-            <label for="id_zone" class="form-label">{{ __('Id Zone') }}</label>
-            <input type="text" name="id_zone" class="form-control @error('id_zone') is-invalid @enderror" value="{{ old('id_zone', $zone?->id_zone) }}" id="id_zone" placeholder="Id Zone">
+            <input type="hidden" name="id_zone" class="form-control @error('id_zone') is-invalid @enderror" value="{{ old('id_zone', $zone?->id_zone) }}" id="id_zone" placeholder="Id Zone">
             {!! $errors->first('id_zone', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
         </div>
         <div class="form-group mb-2 mb20">
@@ -18,7 +17,7 @@
         </div>
         <div class="form-group mb-2 mb20">
             <label for="capacity" class="form-label">{{ __('Capacity') }}</label>
-            <input type="text" name="capacity" class="form-control @error('capacity') is-invalid @enderror" value="{{ old('capacity', $zone?->capacity) }}" id="capacity" placeholder="Capacity">
+            <input type="number" name="capacity" class="form-control @error('capacity') is-invalid @enderror" value="{{ old('capacity', $zone?->capacity) }}" id="capacity" placeholder="Capacity">
             {!! $errors->first('capacity', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
         </div>
         <div class="form-group mb-2 mb20">
@@ -32,8 +31,5 @@
             {!! $errors->first('weather', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
         </div>
 
-    </div>
-    <div class="col-md-12 mt20 mt-2">
-        <button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
     </div>
 </div>

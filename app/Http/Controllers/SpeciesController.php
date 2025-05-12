@@ -13,14 +13,15 @@ use Illuminate\Http\JsonResponse;
 class SpeciesController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the resource.------------
      */
-    public function index(Request $request): View
+    public function index(Request $request): View 
     {
         $species = Species::paginate();
 
         return view('species.index', compact('species'))
-            ->with('i', ($request->input('page', 1) - 1) * $species->perPage());
+            ->with('i', ($request->input('page', 1) - 1) * $species->perPage())
+            ->with('specie', null);
     }
 
     /**
@@ -28,9 +29,9 @@ class SpeciesController extends Controller
      */
     public function create(): View
     {
-        $species = new Species();
+        $specie = new Species();
 
-        return view('species.create', compact('species'));
+        return view('species.create', compact('specie'));
     }
 
     /**
@@ -38,12 +39,12 @@ class SpeciesController extends Controller
      */
     public function store(SpeciesRequest $request): RedirectResponse | JsonResponse
     {
-        $species = Species::create($request->validated());
+        $specie = Species::create($request->validated());
 
         if ($request->expectsJson()) {
             return response()->json([
                 'message' => 'Especie creada exitosamente',
-                'species' => $species
+                'species' => $specie
             ], 201);
         }
 
@@ -62,13 +63,12 @@ class SpeciesController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified resource.--------------
      */
     public function edit($id): View
     {
-        $species = Species::find($id);
-
-        return view('species.edit', compact('species'));
+        $specie = Species::find($id);
+        return view('species.edit', compact('specie'));
     }
 
     /**
@@ -76,19 +76,12 @@ class SpeciesController extends Controller
      */
     public function update(SpeciesRequest $request, $id): RedirectResponse | JsonResponse
     {
-        $species = Species::find($id);
-        $species->update($request->validated());
+            $specie = Species::findOrFail($id); // Lanza 404 automáticamente si no existe
 
-        // Responder según el tipo de solicitud (AJAX o normal)
-        if ($request->expectsJson()) {
-            return response()->json([
-                'message' => 'Especie actualizada exitosamente',
-                'species' => $species
-            ]);
-        }
+            $specie->update($request->validated());
 
-        return Redirect::route('species.index')
-            ->with('success', 'Especie actualizada exitosamente');
+            return Redirect::route('species.index')
+                ->with('success', 'Especie actualizada exitosamente');
     }
 
     /**
@@ -96,8 +89,8 @@ class SpeciesController extends Controller
      */
     public function destroy($id): RedirectResponse | JsonResponse
     {
-        $species = Species::find($id);
-        $species->delete();
+        $specie = Species::find($id);
+        $specie->delete();
 
         if (request()->expectsJson()) {
             return response()->json([

@@ -1,23 +1,23 @@
 /**
- * Zones module - Maneja operaciones CRUD para zonas
+ * Species module - Maneja operaciones CRUD para Turnos
  */
 import toastr from 'toastr';
 import 'toastr/build/toastr.min.css';
 import $ from 'jquery';
 
 window.toggleForm = function () {
-    const form = document.getElementById('zonesFormContainer');
-    const zonesForm = document.getElementById('zones-form');
+    const form = document.getElementById('shiftsFormContainer');
+    const shiftsForm = document.getElementById('shifts-form');
 
-    if (zonesForm) {
-        zonesForm.reset();
-        const storeRoute = zonesForm.getAttribute('data-store-route');
-        zonesForm.setAttribute('action', storeRoute);
+    if (shiftsForm) {
+        shiftsForm.reset();
+        const storeRoute = shiftsForm.getAttribute('data-store-route');
+        shiftsForm.setAttribute('action', storeRoute);
 
         document.getElementById('form-method').value = 'POST';
-        document.getElementById('id_zone').value = '';
+        document.getElementById('id_shift').value = '';
 
-        const submitButton = document.querySelector('#zonesFormContainer button[type="submit"]');
+        const submitButton = document.querySelector('#shiftsFormContainer button[type="submit"]');
         if (submitButton) {
             submitButton.textContent = 'Guardar';
         }
@@ -29,31 +29,29 @@ window.toggleForm = function () {
 };
 
 window.cancelForm = function () {
-    const form = document.getElementById('zonesFormContainer');
+    const form = document.getElementById('shiftsFormContainer');
     if (form) {
         form.style.display = 'none';
     }
 };
 
-window.editZones = function (id_zone, name, location, capacity, type, weather) {
-    const formContainer = document.getElementById('zonesFormContainer');
-    const form = document.getElementById('zones-form');
+window.editShifts = function (id_shift, description, hour_s, hour_e) {
+    const formContainer = document.getElementById('shiftsFormContainer');
+    const form = document.getElementById('shifts-form');
 
     if (formContainer && form) {
         formContainer.style.display = 'block';
 
         const updateUrlBase = form.getAttribute('data-update-route');
-        form.setAttribute('action', updateUrlBase.replace(':id', id_zone));
+        form.setAttribute('action', updateUrlBase.replace(':id', id_shift));
         document.getElementById('form-method').value = 'PUT';
 
-        document.getElementById('id_zone').value = id_zone;
-        document.getElementById('name').value = name;
-        document.getElementById('location').value = location;
-        document.getElementById('capacity').value = capacity;
-        document.getElementById('type').value = type;
-        document.getElementById('weather').value = weather;
+        document.getElementById('id_shift').value = id_shift;
+        document.getElementById('description').value = description;
+        document.getElementById('hour_s').value = hour_s;
+        document.getElementById('hour_e').value = hour_e;
 
-        const submitButton = document.querySelector('#zonesFormContainer button[type="submit"]');
+        const submitButton = document.querySelector('#shiftsFormContainer button[type="submit"]');
         if (submitButton) {
             submitButton.textContent = 'Actualizar';
         }
@@ -63,7 +61,7 @@ window.editZones = function (id_zone, name, location, capacity, type, weather) {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-    const form = document.getElementById('zones-form');
+    const form = document.getElementById('shifts-form');
 
     if (form) {
         form.addEventListener('submit', async (e) => {
@@ -86,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 const response = await fetch(url, {
                     method: method === 'PUT' || method === 'PATCH' ? 'POST' : method,
-                    headers: headers,
+                    headers,
                     body: formData,
                 });
 
@@ -94,9 +92,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     const contentType = response.headers.get('content-type');
                     if (contentType && contentType.includes('application/json')) {
                         const data = await response.json();
-                        
+
                         if (response.ok) {
-                            toastr.success('Zona guardada exitosamente.');
+                            toastr.success('Turno guardada exitosamente.');
                             window.location.reload();
                         } else {
                             if (data.errors) {
@@ -109,7 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     } else {
                         if (response.ok) {
-                            toastr.success('Zona guardada exitosamente.');
+                            toastr.success('Turno guardada exitosamente.');
                             window.location.reload();
                         } else {
                             toastr.error(`Error: ${response.status} ${response.statusText}`);
@@ -127,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    const addButton = document.getElementById('add-zones-btn');
+    const addButton = document.getElementById('add-shifts-btn');
     if (addButton) {
         addButton.addEventListener('click', window.toggleForm);
     }
@@ -137,22 +135,20 @@ document.addEventListener('DOMContentLoaded', () => {
         cancelButton.addEventListener('click', window.cancelForm);
     }
 
-    const editButtons = document.querySelectorAll('.edit-zones-btn');
+    const editButtons = document.querySelectorAll('.edit-shifts-btn');
     editButtons.forEach(button => {
         button.addEventListener('click', function () {
-            const id_zone = this.getAttribute('data-id_zone');
-            const name = this.getAttribute('data-name');
-            const location = this.getAttribute('data-location');
-            const capacity = this.getAttribute('data-capacity');
-            const type = this.getAttribute('data-type');
-            const weather = this.getAttribute('data-weather');
-            window.editZones(id_zone, name, location, capacity, type, weather);
+            const id_shift = this.getAttribute('data-id_shift');
+            const description = this.getAttribute('data-description');
+            const hour_s = this.getAttribute('data-hour_s');
+            const hour_e = this.getAttribute('data-hour_e');
+            window.editShifts(id_shift, description, hour_s, hour_e);
         });
     });
 
     // Búsqueda en vivo
     const searchInput = document.getElementById('search-input');
-    const tableBody = document.getElementById('zones-table-body');
+    const tableBody = document.getElementById('shifts-table-body');
 
     if (searchInput && tableBody) {
         searchInput.addEventListener('input', () => {

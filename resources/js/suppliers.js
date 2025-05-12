@@ -35,7 +35,7 @@ window.cancelForm = function () {
     }
 };
 
-window.editSuppliers = function (rfc, name, phone, mail, address, type_sup) {
+window.editSuppliers = function (rfc, name, phone, mail, addres, type_sup) {
     const formContainer = document.getElementById('suppliersFormContainer');
     const form = document.getElementById('suppliers-form');
 

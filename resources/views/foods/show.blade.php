@@ -21,27 +21,27 @@
                     <div class="card-body bg-white">
                         
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Id Food:</strong>
+                                    <strong>Id Alimento:</strong>
                                     {{ $foods->id_food }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Name:</strong>
+                                    <strong>Nombre:</strong>
                                     {{ $foods->name }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Content:</strong>
+                                    <strong>Contenido:</strong>
                                     {{ $foods->content }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Total Amount:</strong>
+                                    <strong>Contenido total:</strong>
                                     {{ $foods->total_amount }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Cost:</strong>
+                                    <strong>Costo:</strong>
                                     {{ $foods->cost }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Fk Supplier:</strong>
+                                    <strong>Proveedor:</strong>
                                     {{ $foods->fk_supplier }}
                                 </div>
 

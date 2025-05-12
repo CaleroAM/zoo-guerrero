@@ -33,6 +33,9 @@ class Food extends Model
      * @var array<int, string>
      */
     protected $table = 'foods';
+    protected $primaryKey ='id_food';
+    public $incrementing = true;
+    protected $keyType = 'int';
     protected $fillable = ['id_food', 'name', 'content', 'total_amount', 'cost', 'fk_supplier'];
 
 

@@ -34,36 +34,11 @@
                 <div id="zonesFormContainer" style="display: none;" class="card-body bg-light">
                     <form id="zones-form" action="{{ route('zones.store') }}" method="POST" 
                           data-store-route="{{ route('zones.store') }}" 
-                          data-update-route="{{ url('zones') }}/:id">
+                          data-update-route="{{ route('zones.update', ':id') }}">
                         @csrf
                         <input type="hidden" name="_method" id="form-method" value="POST">
                         <input type="hidden" name="id_zone" id="id_zone" value="">
-
-                        <div class="form-group mb-2 mb20">
-                            <label for="name" class="form-label">{{ __('Name') }}</label>
-                            <input type="text" name="name" class="form-control" id="name" placeholder="Nombre de la zona">
-                            {!! $errors->first('name', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
-                        </div>
-                        <div class="form-group mb-2 mb20">
-                            <label for="location" class="form-label">{{ __('Location') }}</label>
-                            <input type="text" name="location" class="form-control" id="location" placeholder="Ubicación">
-                            {!! $errors->first('location', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
-                        </div>
-                        <div class="form-group mb-2 mb20">
-                            <label for="capacity" class="form-label">{{ __('Capacity') }}</label>
-                            <input type="text" name="capacity" class="form-control" id="capacity" placeholder="Capacidad">
-                            {!! $errors->first('capacity', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
-                        </div>
-                        <div class="form-group mb-2 mb20">
-                            <label for="type" class="form-label">{{ __('Type') }}</label>
-                            <input type="text" name="type" class="form-control" id="type" placeholder="Tipo de zona">
-                            {!! $errors->first('type', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
-                        </div>
-                        <div class="form-group mb-2 mb20">
-                            <label for="weather" class="form-label">{{ __('Weather') }}</label>
-                            <input type="text" name="weather" class="form-control" id="weather" placeholder="Clima">
-                            {!! $errors->first('weather', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
-                        </div>
+                        @include('zones.form')
                         <button type="submit" class="btn btn-primary">Guardar</button>
                         <button type="button" id="cancel-form-btn" class="btn btn-secondary">Cancelar</button>
                     
@@ -110,7 +85,7 @@
                                                         <i class="fa fa-eye"></i> {{ __('Mostrar') }}
                                                     </a>
                                                     <button class="btn btn-sm btn-success edit-zones-btn" 
-                                                            data-id="{{ $zone->id_zone }}"
+                                                            data-id_zone="{{ $zone->id_zone }}"
                                                             data-name="{{ $zone->name }}"
                                                             data-location="{{ $zone->location }}"
                                                             data-capacity="{{ $zone->capacity }}"
