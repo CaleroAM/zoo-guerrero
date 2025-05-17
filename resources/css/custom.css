@@ -1,0 +1,191 @@
+@import '@fortawesome/fontawesome-free/css/all.min.css';
+
+
+.table {
+    --bs-table-bg: #e7e7e5;               /* Fondo base */
+    --bs-table-striped-bg: #ffffff;      /* Filas alternas */
+    --bs-table-hover-bg: #e9ecef;        /* Hover */
+    --bs-table-border-color: #dee2e6;    /* Bordes */
+    --bs-table-border-color: #916540;   
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #ffffff; 
+}
+
+
+.container-fluid {
+    background-color: #ffffff; /* Fondo del contenedor principal */
+}
+
+
+
+/* Estilo para hover en los elementos del menú */
+.navbar-light .navbar-nav .nav-item:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+/* Tamaño de icono */
+.navbar-nav .nav-link i {
+    font-size: 1.2rem;
+}
+
+/* Estilo activo para la navegación */
+.navbar-nav .nav-item.active .nav-link {
+    font-weight: bold;
+}
+
+/* Ajustes para dispositivos móviles */
+@media (max-width: 992px) {
+    .navbar-nav .nav-item {
+        margin-bottom: 10px;
+    }
+}
+
+
+/* Estilo unificado para grupos de botones en acciones */
+.action-buttons {
+    display: flex;
+    gap: 3px; /* Espacio uniforme entre botones */
+    flex-wrap: wrap; /* Para que se acomoden bien en pantallas pequeñas */
+}
+
+/* Estilos uniformes para todos los botones dentro de formularios de acciones */
+.action-buttons .btn {
+    min-width: 100px; /* Mismo ancho mínimo */
+    text-align: center;
+    padding: 0.2rem 1rem;
+    font-size: 0.7rem;
+}
+
+/*Cabecera de la tabla*/
+.system-icon {
+    font-size: 1.3rem;
+    color: #e7e7e5;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+#card_title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #e7e7e5;
+    margin-bottom: 10px;
+}
+
+
+/* Estilo para el botón de cerrar en la tarjeta */
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: auto;
+}
+
+#app {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+main.py-4 {
+    flex: 1;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    display: block;
+    align-items: center;
+    overflow: auto;
+}
+
+.login-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.login-row {
+    width: 100%;
+    max-width: 1200px;
+}
+
+.login-image-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.login-image {
+    max-width: 100%;
+    max-height: 75vh;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgb(255, 255, 255);
+}
+
+/* Personalización de la tarjeta según tus estilos personalizados */
+.card {
+    border: 1px solid #e0e0e0; /* Borde más claro */
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075); /* Sombra más suave */
+    --bs-card-bg: #ffffff00;
+    --bs-card-border-color: #0080ff00;
+    border: 10px solid #e0e0e0;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.card-header {
+    background-color: #916540;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Ajustes para dispositivos móviles */
+@media (max-width: 767.98px) {
+    .login-image-container {
+        display: none;
+    }
+    
+    .login-form-container {
+        width: 100%;
+        padding: 0 15px;
+    }
+}
+
+/*Botón de añadir o editar*/
+.btn-success{
+    --bs-btn-color: #fff;
+    --bs-btn-bg: #194b14;
+    --bs-btn-border-color: #194b14;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: rgb(21.25, 114.75, 71.4);
+    --bs-btn-hover-border-color: rgb(20, 108, 67.2);
+    --bs-btn-focus-shadow-rgb: 60, 153, 110;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: rgb(20, 108, 67.2);
+    --bs-btn-active-border-color: rgb(18.75, 101.25, 63);
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #fff;
+    --bs-btn-disabled-bg: #194b14;
+    --bs-btn-disabled-border-color: #194b14;
+}
+
+.btn-primary {
+    --bs-btn-color: #fff;
+    --bs-btn-bg: #ecbd37;
+    --bs-btn-border-color: #ecbd37;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: rgb(215, 127, 11);
+    --bs-btn-hover-border-color: rgb(215, 127, 11);
+    --bs-btn-focus-shadow-rgb: 49, 132, 253;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: rgb(215, 127, 11);
+    --bs-btn-active-border-color: rgb(9.75, 82.5, 189.75);
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #fff;
+    --bs-btn-disabled-bg: #ecbd37;
+    --bs-btn-disabled-border-color: #ecbd37;
+}
