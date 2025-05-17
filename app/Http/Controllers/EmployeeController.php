@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\EmployeeRequest;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use App\Models\Shift;
 
 class EmployeeController extends Controller
 {
@@ -17,9 +18,12 @@ class EmployeeController extends Controller
     public function index(Request $request): View
     {
         $employees = Employee::paginate();
+        $bosses = Employee::all();
+        $shifts = Shift::all();
 
-        return view('employees.index', compact('employees'))
-            ->with('i', ($request->input('page', 1) - 1) * $employees->perPage());
+        return view('employees.index', compact('employees','bosses', 'shifts'))
+            ->with('i', ($request->input('page', 1) - 1) * $employees->perPage())
+            ->with('employee', null);
     }
 
     /**
@@ -28,8 +32,9 @@ class EmployeeController extends Controller
     public function create(): View
     {
         $employees = new Employee();
-
-        return view('employees.create', compact('employees'));
+        $boss = Employee::all();
+        $shifts = Shift::all();
+        return view('employees.create', compact('employees', 'boss', 'shifts'));
     }
 
     /**
@@ -37,6 +42,7 @@ class EmployeeController extends Controller
      */
     public function store(EmployeeRequest $request): RedirectResponse
     {
+        
         Employee::create($request->validated());
 
         return Redirect::route('employees.index')
@@ -48,9 +54,9 @@ class EmployeeController extends Controller
      */
     public function show($id): View
     {
-        $employees = Employee::find($id);
+        $employee = Employee::find($id);
 
-        return view('employees.show', compact('employees'));
+        return view('employees.show', compact('employee'));
     }
 
     /**
@@ -58,17 +64,18 @@ class EmployeeController extends Controller
      */
     public function edit($id): View
     {
-        $employees = Employee::find($id);
-
-        return view('employees.edit', compact('employees'));
+        $employee = Employee::find($id);
+        $bosses = Employee::all();
+        $shifts = Shift::all();
+        return view('employees.edit', compact('employee', 'bosses', 'shifts'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(EmployeeRequest $request, Employee $employees): RedirectResponse
+    public function update(EmployeeRequest $request, Employee $employee): RedirectResponse
     {
-        $employees->update($request->validated());
+        $employee->update($request->validated());
 
         return Redirect::route('employees.index')
             ->with('success', 'Employee updated successfully');

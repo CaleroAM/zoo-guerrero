@@ -10,7 +10,7 @@
 }
 
 .table-striped tbody tr:nth-of-type(odd) {
-    background-color: #ffffff; /* Cambia #tuColor por el código del color que prefieras */
+    background-color: #ffffff; 
 }
 
 

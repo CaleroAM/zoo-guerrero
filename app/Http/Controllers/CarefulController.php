@@ -6,6 +6,9 @@ use App\Models\Careful;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests\CarefulRequest;
+use App\Models\Animal;
+use App\Models\Employee;
+use App\Models\Food;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
@@ -17,9 +20,13 @@ class CarefulController extends Controller
     public function index(Request $request): View
     {
         $carefuls = Careful::paginate();
+        $foods = Food::all();
+        $employees = Employee::all();
+        $animals = Animal::all();
 
-        return view('careful.index', compact('carefuls'))
-            ->with('i', ($request->input('page', 1) - 1) * $carefuls->perPage());
+        return view('carefuls.index', compact('carefuls', 'foods', 'employees', 'animals'))
+            ->with('i', ($request->input('page', 1) - 1) * $carefuls->perPage())
+            ->with('careful', null);
     }
 
     /**
@@ -29,7 +36,7 @@ class CarefulController extends Controller
     {
         $careful = new Careful();
 
-        return view('careful.create', compact('careful'));
+        return view('carefuls.create', compact('careful'));
     }
 
     /**
@@ -50,7 +57,7 @@ class CarefulController extends Controller
     {
         $careful = Careful::find($id);
 
-        return view('careful.show', compact('careful'));
+        return view('carefuls.show', compact('careful'));
     }
 
     /**
@@ -60,7 +67,7 @@ class CarefulController extends Controller
     {
         $careful = Careful::find($id);
 
-        return view('careful.edit', compact('careful'));
+        return view('carefuls.edit', compact('careful'));
     }
 
     /**

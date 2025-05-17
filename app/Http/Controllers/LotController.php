@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Lot;
+use App\Models\Food;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests\LotRequest;
@@ -17,9 +18,11 @@ class LotController extends Controller
     public function index(Request $request): View
     {
         $lots = Lot::paginate();
+        $foods = Food::all();
 
-        return view('lot.index', compact('lots'))
-            ->with('i', ($request->input('page', 1) - 1) * $lots->perPage());
+        return view('lots.index', compact('lots', 'foods'))
+            ->with('i', ($request->input('page', 1) - 1) * $lots->perPage())
+            ->with('lot', null);
     }
 
     /**
@@ -28,8 +31,8 @@ class LotController extends Controller
     public function create(): View
     {
         $lot = new Lot();
-
-        return view('lot.create', compact('lot'));
+        $foods = Food::all();
+        return view('lots.create', compact('lot', 'foods'));
     }
 
     /**
@@ -48,9 +51,9 @@ class LotController extends Controller
      */
     public function show($id): View
     {
-        $lot = Lot::find($id);
+        $lot= Lot::find($id);
 
-        return view('lot.show', compact('lot'));
+        return view('lots.show', compact('lot'));
     }
 
     /**
@@ -59,8 +62,8 @@ class LotController extends Controller
     public function edit($id): View
     {
         $lot = Lot::find($id);
-
-        return view('lot.edit', compact('lot'));
+        $foods = Food::all();
+        return view('lots.edit', compact('lot', 'foods'));
     }
 
     /**

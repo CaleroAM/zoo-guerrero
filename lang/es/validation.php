@@ -27,6 +27,20 @@ return [
     'total_amount' => 'contenido total',
     'cost' => 'costo',
     'fk_supplier' => 'proveedor',
+
+    'second_name' => 'segundo nombre',
+    'last_name' => 'apellido',
+    'age' => 'edad',
+    'Sex' => 'sexo',
+    'id_boss' => 'Jefe',
+    'fk_shift' => 'turno',
+
+    'fk_employee' => 'empleado',
+    'phone' => 'teléfono',
+    'street' => 'calle',
+    'cologne' => 'colonia',
+    'cp' => 'código postal',
+    'state' => 'estado',
     
     
     ],

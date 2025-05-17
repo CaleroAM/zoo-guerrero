@@ -5,7 +5,7 @@
     <div class="row justify-content-center w-100 align-items-center">
 
         <div class="col-md-6 d-none d-md-block">
-            <img src="{{ asset('images/nav-zoo.png') }}" alt="Imagen registro" class="img-fluid rounded shadow" style="max-height: 70vh; object-fit: contain;">
+            <img src="{{ asset('images/login_register.png') }}" alt="Imagen registro" class="img-fluid rounded" style="max-height: 70vh; object-fit: contain;">
         </div>
 
         <div class="col-md-6 col-12 d-flex align-items-center">

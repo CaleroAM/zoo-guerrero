@@ -11,34 +11,34 @@
                 <div class="card">
                     <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
                         <div class="float-left">
-                            <span class="card-title">{{ __('Show') }} Lot</span>
+                            <span class="card-title">{{ __('Mostrar') }} Lote</span>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary btn-sm" href="{{ route('lots.index') }}"> {{ __('Back') }}</a>
+                            <a class="btn btn-primary btn-sm" href="{{ route('lots.index') }}"> {{ __('Regresar') }}</a>
                         </div>
                     </div>
 
                     <div class="card-body bg-white">
                         
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Id Lot:</strong>
+                                    <strong>Id Lote:</strong>
                                     {{ $lot->id_lot }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Date Cad:</strong>
+                                    <strong>Fecha de caducidad:</strong>
                                     {{ $lot->date_cad }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Portion:</strong>
+                                    <strong>Porción:</strong>
                                     {{ $lot->portion }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Date Start:</strong>
+                                    <strong>Fecha de inicio:</strong>
                                     {{ $lot->date_start }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Fk Food:</strong>
-                                    {{ $lot->fk_food }}
+                                    <strong>Alimento:</strong>
+                                     {{ $lot->food ? $lot->food->name : 'No disponible' }}
                                 </div>
 
                     </div>

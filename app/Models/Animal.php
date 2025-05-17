@@ -37,6 +37,10 @@ class Animal extends Model
      *
      * @var array<int, string>
      */
+    protected $table = 'animals';
+    protected $primaryKey = 'id_animal';
+    public $incrementing = true;
+    protected $keyType = 'int';
     protected $fillable = ['id_animal', 'name', 'age', 'height', 'weigh', 'sex', 'fecha_nac', 'descripcion', 'fk_specie', 'fk_zone'];
 
 

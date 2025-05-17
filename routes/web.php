@@ -14,14 +14,12 @@ use App\Http\Controllers\ZoneController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
-Auth::routes();
+Route::redirect('/', '/login', 301);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::resource('species', SpeciesController::class);
+Route::middleware(['auth'])->group(function () {
+    Route::resource('species', SpeciesController::class);
 Route::resource('zones', ZoneController::class);
 Route::resource('suppliers', SupplierController::class);
 Route::resource('shifts', ShiftController::class); 
@@ -32,3 +30,5 @@ Route::resource('dates', DateController::class);
 Route::resource('empshifts', EmpshiftController::class);
 Route::resource('animals', AnimalController::class);
 Route::resource('carefuls', CarefulController::class);
+});
+Auth::routes();

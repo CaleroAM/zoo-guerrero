@@ -11,34 +11,36 @@
                 <div class="card">
                     <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
                         <div class="float-left">
-                            <span class="card-title">{{ __('Show') }} Empshift</span>
+                            <span class="card-title">{{ __('Mostrar') }} horas trabajadas</span>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary btn-sm" href="{{ route('empshifts.index') }}"> {{ __('Back') }}</a>
+                            <a class="btn btn-primary btn-sm" href="{{ route('empshifts.index') }}"> {{ __('Regresar') }}</a>
                         </div>
                     </div>
 
                     <div class="card-body bg-white">
                         
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Id Empshift:</strong>
+                                    <strong>Id:</strong>
                                     {{ $empshift->id_empshift }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Hours Worked:</strong>
+                                    <strong>Horas trabajadas:</strong>
                                     {{ $empshift->hours_worked }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Reason:</strong>
+                                    <strong>Razón:</strong>
                                     {{ $empshift->reason }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Fk Shift:</strong>
-                                    {{ $empshift->fk_shift }}
+                                    <strong>Turno:</strong>
+                                    {{ $empshift->fk_shift }}<text>-</text>
+                                    {{ $empshift->shift->description }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Fk Employee:</strong>
-                                    {{ $empshift->fk_employee }}
+                                    <strong>Empleado:</strong>
+                                    {{ $empshift->fk_employee }} <text>-</text>
+                                    {{ $empshift->employee->name }} {{ $empshift->employee->last_name }}
                                 </div>
 
                     </div>

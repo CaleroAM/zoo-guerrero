@@ -22,7 +22,6 @@ class CarefulRequest extends FormRequest
     public function rules(): array
     {
         return [
-			'id_careful' => 'required',
 			'date_start' => 'required',
 			'hours' => 'required',
 			'treatment' => 'required|string',

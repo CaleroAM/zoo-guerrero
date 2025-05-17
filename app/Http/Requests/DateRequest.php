@@ -22,7 +22,7 @@ class DateRequest extends FormRequest
     public function rules(): array
     {
         return [
-			'id_date' => 'required',
+			
 			'fk_employee' => 'required',
 			'phone' => 'required|string',
 			'email' => 'required|string',

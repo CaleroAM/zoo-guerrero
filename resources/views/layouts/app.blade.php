@@ -94,7 +94,11 @@
             'zones.index',
             'foods.index',
             'suppliers.index',
+            'lots.index',
             'employees.index',
+            'dates.index',
+            'empshifts.index',
+            'carefuls.index',
         ];
         @endphp
 

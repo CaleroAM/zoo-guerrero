@@ -11,10 +11,10 @@
                 <div class="card">
                     <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
                         <div class="float-left">
-                            <span class="card-title">{{ __('Show') }} Animal</span>
+                            <span class="card-title">{{ __('Mostrar ') }} animal</span>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary btn-sm" href="{{ route('animals.index') }}"> {{ __('Back') }}</a>
+                            <a class="btn btn-primary btn-sm" href="{{ route('animals.index') }}"> {{ __('Regresar') }}</a>
                         </div>
                     </div>
 
@@ -25,40 +25,43 @@
                                     {{ $animal->id_animal }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Name:</strong>
+                                    <strong>Nombre:</strong>
                                     {{ $animal->name }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Age:</strong>
+                                    <strong>Edad:</strong>
                                     {{ $animal->age }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Height:</strong>
+                                    <strong>Altura:</strong>
                                     {{ $animal->height }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Weigh:</strong>
+                                    <strong>Peso:</strong>
                                     {{ $animal->weigh }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Sex:</strong>
+                                    <strong>Sexo:</strong>
                                     {{ $animal->sex }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Fecha Nac:</strong>
+                                    <strong>Fecha de nacimiento:</strong>
                                     {{ $animal->fecha_nac }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Descripcion:</strong>
+                                    <strong>Descripción:</strong>
                                     {{ $animal->descripcion }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Fk Specie:</strong>
-                                    {{ $animal->fk_specie }}
+                                    <strong>Especie:</strong>
+                                    {{ $animal->fk_specie }} <text>-</text>
+                                    {{ $animal->species ? $animal->species->name_scientific : 'No disponible' }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Fk Zone:</strong>
-                                    {{ $animal->fk_zone }}
+                                    <strong>Zona:</strong>
+                                    {{ $animal->fk_zone }} <text>-</text>
+                                    
+                                    {{ $animal->zone ? $animal->zone->location : '' }}
                                 </div>
 
                     </div>

@@ -6,6 +6,7 @@ use App\Models\Date;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests\DateRequest;
+use App\Models\Employee;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
@@ -17,9 +18,10 @@ class DateController extends Controller
     public function index(Request $request): View
     {
         $dates = Date::paginate();
-
-        return view('date.index', compact('dates'))
-            ->with('i', ($request->input('page', 1) - 1) * $dates->perPage());
+        $employees = Employee::all();
+        return view('dates.index', compact('dates', 'employees'))
+            ->with('i', ($request->input('page', 1) - 1) * $dates->perPage())
+            ->with('date', null);
     }
 
     /**
@@ -29,7 +31,7 @@ class DateController extends Controller
     {
         $date = new Date();
 
-        return view('date.create', compact('date'));
+        return view('dates.create', compact('date'));
     }
 
     /**
@@ -50,7 +52,7 @@ class DateController extends Controller
     {
         $date = Date::find($id);
 
-        return view('date.show', compact('date'));
+        return view('dates.show', compact('date'));
     }
 
     /**
@@ -60,7 +62,7 @@ class DateController extends Controller
     {
         $date = Date::find($id);
 
-        return view('date.edit', compact('date'));
+        return view('dates.edit', compact('date'));
     }
 
     /**

@@ -22,7 +22,7 @@ class EmpshiftRequest extends FormRequest
     public function rules(): array
     {
         return [
-			'id_empshift' => 'required',
+			
 			'hours_worked' => 'required',
 			'reason' => 'required|string',
 			'fk_shift' => 'required',

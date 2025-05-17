@@ -11,10 +11,10 @@
                 <div class="card">
                     <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
                         <div class="float-left">
-                            <span class="card-title">{{ __('Show') }} Careful</span>
+                            <span class="card-title">{{ __('Mostrar') }} cuidado</span>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary btn-sm" href="{{ route('carefuls.index') }}"> {{ __('Back') }}</a>
+                            <a class="btn btn-primary btn-sm" href="{{ route('carefuls.index') }}"> {{ __('Regresar') }}</a>
                         </div>
                     </div>
 
@@ -25,32 +25,37 @@
                                     {{ $careful->id_careful }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Date Start:</strong>
+                                    <strong>Fecha de entradat:</strong>
                                     {{ $careful->date_start }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Hours:</strong>
+                                    <strong>Horas:</strong>
                                     {{ $careful->hours }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Treatment:</strong>
+                                    <strong>Tratamiento:</strong>
                                     {{ $careful->treatment }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Amount Food:</strong>
+                                    <strong>Cantidad de comida:</strong>
                                     {{ $careful->amount_food }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Fk Food:</strong>
-                                    {{ $careful->fk_food }}
+                                    <strong>Comida:</strong>
+                                    {{ $careful->fk_food }} <text>-</text>
+                                    {{ $careful->food->name }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Fk Employee:</strong>
-                                    {{ $careful->fk_employee }}
+                                    <strong>Empleado:</strong>
+                                    {{ $careful->fk_employee }} <text>-</text>
+                                    {{ $careful->employee->name }} 
+                                    {{ $careful->employee->last_name }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Fk Animal:</strong>
-                                    {{ $careful->fk_animal }}
+                                    <strong>Animal:</strong>
+                                    {{ $careful->fk_animal }} <text>-</text>
+                                    {{ $careful->animal->name }} <text>-</text>
+                                    {{ $careful->animal->species->name_common }}
                                 </div>
 
                     </div>

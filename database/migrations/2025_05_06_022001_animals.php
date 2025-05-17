@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name',40);
             $table->unsignedTinyInteger('age');
             $table->decimal('height',5,2);
-            $table->decimal('weigh',3,1);
+            $table->decimal('weigh',6,2);
             $table->enum('sex',['Hembra','Macho']);
             $table->date('fecha_nac');
             $table->string('descripcion', 100);

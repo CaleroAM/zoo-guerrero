@@ -29,6 +29,10 @@ class Lot extends Model
      *
      * @var array<int, string>
      */
+    protected $table = 'lots';
+    protected $primaryKey = 'id_lot';
+    public $incrementing = true;
+    protected $keyType = 'int';
     protected $fillable = ['id_lot', 'date_cad', 'portion', 'date_start', 'fk_food'];
 
 

@@ -77,6 +77,7 @@
                                         <td>
                                             <div class="supplier-info">
                                                 {{ $food->supplier ? $food->supplier->name : 'Sin proveedor' }}
+                                                <text>-</text>
                                                 {{ $food->supplier ? $food->supplier->rfc : 'Sin proveedor' }}
                                             </div>
 

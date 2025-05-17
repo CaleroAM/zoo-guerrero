@@ -30,6 +30,10 @@ class Empshift extends Model
      *
      * @var array<int, string>
      */
+    protected $table = 'empshifts';
+    protected $primaryKey = 'id_empshift';
+    public $incrementing = true;
+    protected $keyType = 'int';
     protected $fillable = ['id_empshift', 'hours_worked', 'reason', 'fk_shift', 'fk_employee'];
 
 

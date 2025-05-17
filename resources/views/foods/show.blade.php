@@ -11,10 +11,10 @@
                 <div class="card">
                     <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
                         <div class="float-left">
-                            <span class="card-title">{{ __('Show') }} Food</span>
+                            <span class="card-title">{{ __('Mostrar') }} alimento</span>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary btn-sm" href="{{ route('foods.index') }}"> {{ __('Back') }}</a>
+                            <a class="btn btn-primary btn-sm" href="{{ route('foods.index') }}"> {{ __('Regresar') }}</a>
                         </div>
                     </div>
 
@@ -42,7 +42,8 @@
                                 </div>
                                 <div class="form-group mb-2 mb20">
                                     <strong>Proveedor:</strong>
-                                    {{ $foods->fk_supplier }}
+                                    {{ $foods->fk_supplier }} <text>-</text>
+                                    {{ $foods->supplier ? $foods->supplier->name : 'No disponible' }}
                                 </div>
 
                     </div>

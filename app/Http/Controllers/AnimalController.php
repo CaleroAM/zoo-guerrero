@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Animal;
+use App\Models\Species;
+use App\Models\Zone;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests\AnimalRequest;
@@ -17,9 +19,12 @@ class AnimalController extends Controller
     public function index(Request $request): View
     {
         $animals = Animal::paginate();
+        $species = Species::all();
+        $zones = Zone::all();
 
-        return view('animal.index', compact('animals'))
-            ->with('i', ($request->input('page', 1) - 1) * $animals->perPage());
+        return view('animals.index', compact('animals', 'species', 'zones'))
+            ->with('i', ($request->input('page', 1) - 1) * $animals->perPage())
+            ->with('animal', null);
     }
 
     /**
@@ -29,7 +34,7 @@ class AnimalController extends Controller
     {
         $animal = new Animal();
 
-        return view('animal.create', compact('animal'));
+        return view('animals.create', compact('animal'));
     }
 
     /**
@@ -49,8 +54,9 @@ class AnimalController extends Controller
     public function show($id): View
     {
         $animal = Animal::find($id);
+        $species = Species::all();
 
-        return view('animal.show', compact('animal'));
+        return view('animals.show', compact('animal', 'species'));
     }
 
     /**
@@ -60,7 +66,7 @@ class AnimalController extends Controller
     {
         $animal = Animal::find($id);
 
-        return view('animal.edit', compact('animal'));
+        return view('animals.edit', compact('animal'));
     }
 
     /**

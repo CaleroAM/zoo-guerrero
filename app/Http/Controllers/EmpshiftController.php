@@ -6,6 +6,8 @@ use App\Models\Empshift;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests\EmpshiftRequest;
+use App\Models\Employee;
+use App\Models\Shift;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
@@ -17,9 +19,12 @@ class EmpshiftController extends Controller
     public function index(Request $request): View
     {
         $empshifts = Empshift::paginate();
+        $shifts = Shift::all();
+        $employees = Employee::all();
 
-        return view('empshift.index', compact('empshifts'))
-            ->with('i', ($request->input('page', 1) - 1) * $empshifts->perPage());
+        return view('empshifts.index', compact('empshifts', 'shifts', 'employees'))
+            ->with('i', ($request->input('page', 1) - 1) * $empshifts->perPage())
+            ->with('empshift', null);
     }
 
     /**
@@ -28,8 +33,8 @@ class EmpshiftController extends Controller
     public function create(): View
     {
         $empshift = new Empshift();
-
-        return view('empshift.create', compact('empshift'));
+        
+        return view('empshifts.create', compact('empshift'));
     }
 
     /**
@@ -50,7 +55,7 @@ class EmpshiftController extends Controller
     {
         $empshift = Empshift::find($id);
 
-        return view('empshift.show', compact('empshift'));
+        return view('empshifts.show', compact('empshift'));
     }
 
     /**
@@ -59,8 +64,7 @@ class EmpshiftController extends Controller
     public function edit($id): View
     {
         $empshift = Empshift::find($id);
-
-        return view('empshift.edit', compact('empshift'));
+        return view('empshifts.edit', compact('empshift'));
     }
 
     /**

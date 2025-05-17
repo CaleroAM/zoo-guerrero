@@ -11,25 +11,27 @@
                 <div class="card">
                     <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
                         <div class="float-left">
-                            <span class="card-title">{{ __('Show') }} Date</span>
+                            <span class="card-title">{{ __('Mostrar') }} datos</span>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary btn-sm" href="{{ route('dates.index') }}"> {{ __('Back') }}</a>
+                            <a class="btn btn-primary btn-sm" href="{{ route('dates.index') }}"> {{ __('Regresar') }}</a>
                         </div>
                     </div>
 
                     <div class="card-body bg-white">
                         
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Id Date:</strong>
+                                    <strong>Id Dato:</strong>
                                     {{ $date->id_date }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Fk Employee:</strong>
-                                    {{ $date->fk_employee }}
+                                    <strong>Empleado:</strong>
+                                    {{ $date->fk_employee }} <text>-</text>
+                                    {{ $date->fk_employee ? $date->employee->name : 'No disponible' }}
+                                    {{ $date->fk_employee ? $date->employee->last_name : 'No disponible' }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Phone:</strong>
+                                    <strong>Celular:</strong>
                                     {{ $date->phone }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
@@ -37,19 +39,19 @@
                                     {{ $date->email }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Street:</strong>
+                                    <strong>Calle:</strong>
                                     {{ $date->street }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Cologne:</strong>
+                                    <strong>Colonia:</strong>
                                     {{ $date->cologne }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Cp:</strong>
+                                    <strong>Código postal:</strong>
                                     {{ $date->cp }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>State:</strong>
+                                    <strong>Estado:</strong>
                                     {{ $date->state }}
                                 </div>
 

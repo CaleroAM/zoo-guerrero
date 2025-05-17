@@ -34,6 +34,10 @@ class Careful extends Model
      *
      * @var array<int, string>
      */
+    protected $table = 'carefuls';
+    protected $primaryKey = 'id_careful';
+    public $incrementing = true;
+    protected $keyType = 'int';
     protected $fillable = ['id_careful', 'date_start', 'hours', 'treatment', 'amount_food', 'fk_food', 'fk_employee', 'fk_animal'];
 
 
