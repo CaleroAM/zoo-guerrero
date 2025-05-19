@@ -47,6 +47,7 @@ window.editSuppliers = function (rfc, name, phone, mail, addres, type_sup) {
         document.getElementById('form-method').value = 'PUT';
 
         document.getElementById('rfc').value = rfc;
+        document.getElementById('rfc').disabled = true;
         document.getElementById('name').value = name;
         document.getElementById('phone').value = phone;
         document.getElementById('mail').value = mail;
@@ -74,6 +75,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const method = document.getElementById('form-method').value;
             const token = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
 
+            const rfcInput = document.getElementById('rfc');
+            if (rfcInput && rfcInput.disabled) {
+                formData.append('rfc', rfcInput.value);
+            }
             try {
                 const headers = {
                     'X-CSRF-TOKEN': token,
