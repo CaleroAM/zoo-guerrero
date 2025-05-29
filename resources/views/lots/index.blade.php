@@ -25,7 +25,7 @@
                     <!-- Buscador -->
                     <div class="card-body p-4">
                         <div class="input-group mb-3">
-                            <input type="text" id="search-input" class="form-control" placeholder="Buscar lotes...Ej. id_lot, Fecha de caducidad, porción, alimento">
+                            <input type="text" id="search-input" class="form-control" placeholder="Buscar Lotes...Ej. id_lote, Nombre, Fecha de inicio, Fecha de fin, Cantidad, Alimento">
                         </div>      
                     </div>
                     <!-- Formulario para crear/editar alimentos -->

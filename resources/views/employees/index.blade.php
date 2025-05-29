@@ -25,7 +25,7 @@
                     <!-- Buscador -->
                     <div class="card-body p-4">
                         <div class="input-group mb-3">
-                            <input type="text" id="search-input" class="form-control" placeholder="Buscar empleados...Ej. id_employee, nombre, segundo nombre, apellido, edad, sexo, tipo de empleado, id jefe, fk turno">
+                            <input type="text" id="search-input" class="form-control" placeholder="Buscar Empleados...Ej. Id empleado, Nombre, Segundo nombre, Apellidos, Edad, Sexo, Tipo de empleado, Jefe, Turno">
                         </div>      
                     </div>
 
@@ -63,7 +63,8 @@
 									<th >Id empleado</th>
 									<th >Nombre</th>
 									<th >Segundo nombre</th>
-									<th >Apellidos</th>
+									<th >Apellido materno</th>
+                                    <th >Apellido paterno</th>
 									<th >Edad</th>
 									<th >Sexo</th>
 									<th >Tipo de empleado</th>
@@ -80,6 +81,7 @@
                                             <td>{{ $employee->name }}</td>
                                             <td>{{ $employee->second_name }}</td>
                                             <td>{{ $employee->last_name }}</td>
+                                            <td>{{ $employee->second_last_name }}</td>
                                             <td>{{ $employee->age }}</td>
                                             <td>{{ $employee->Sex }}</td>
                                             <td>{{ $employee->type_empl }}</td>
@@ -105,6 +107,7 @@
                                                             data-name="{{ $employee->name }}"
                                                             data-second_name="{{ $employee->second_name }}"
                                                             data-last_name="{{ $employee->last_name ?? '' }}"
+                                                            data-second_last_name="{{ $employee->second_last_name ?? '' }}"
                                                             data-age="{{ $employee->age }}"
                                                             data-sex="{{ $employee->Sex }}"
                                                             data-type_empl="{{ $employee->type_empl }}"

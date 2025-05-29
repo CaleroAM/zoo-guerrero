@@ -27,7 +27,7 @@
                     </div>
                     <div class="card-body p-4">
                         <div class="input-group mb-3">
-                            <input type="text" id="search-input" class="form-control" placeholder="Buscar animales...Ej. id, nombre, edad, peso, altura, especie, zona">
+                            <input type="text" id="search-input" class="form-control" placeholder="Buscar Animales...Ej. Id Animal, Nombre, Edad, Altura, Peso, Sexo, Fecha de nacimiento, Descripción, Especie, Zona">
                         </div>      
                     </div>
 

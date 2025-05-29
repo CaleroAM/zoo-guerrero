@@ -8,7 +8,7 @@
         </div>
 
         <div class="form-group mb-3"><label for="portion" class="form-label">{{ __('Porción') }}</label>
-            <input type="text" name="portion" id="portion" class="form-control @error('portion') is-invalid @enderror" value="{{ old('portion', $lot?->portion) }}" placeholder="Porción">
+            <input type="text" name="portion" id="portion" class="form-control @error('portion') is-invalid @enderror" value="{{ old('portion', $lot?->portion) }}" placeholder="Porción en Kg, L, etc.">
             @error('portion')<div class="invalid-feedback">{{ $message }}</div>@enderror
         </div>
 

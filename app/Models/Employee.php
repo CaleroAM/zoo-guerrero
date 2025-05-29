@@ -46,7 +46,7 @@ class Employee extends Model
     protected $primaryKey = 'id_employee';
     public $incrementing = true;
     protected $keyType = 'int';
-    protected $fillable = ['id_employee', 'name', 'second_name', 'last_name', 'age', 'Sex', 'type_empl', 'id_boss', 'fk_shift'];
+    protected $fillable = ['name', 'second_name', 'last_name', 'age', 'Sex', 'type_empl', 'id_boss', 'fk_shift'];
 
 
     /**

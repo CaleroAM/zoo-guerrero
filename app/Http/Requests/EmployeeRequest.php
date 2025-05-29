@@ -29,6 +29,7 @@ class EmployeeRequest extends FormRequest
             'name' => 'required|string|max:255',
             'second_name' => 'nullable|string|max:255',
             'last_name' => 'required|string|max:255',
+            'second_last_name' => 'required|string|max:255',
             'age' => 'required|integer|min:18|max:99',
             'Sex' => 'required|in:Masculino,Femenino',
             'type_empl' => 'required|string|max:255',

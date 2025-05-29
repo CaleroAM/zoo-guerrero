@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name',40);
             $table->string('second_name',40);
             $table->string('last_name',40);
+            $table->string('second_last_name',40);
             $table->integer('age');
             $table->enum('Sex',['Masculino','Femenino']);
             $table->string('type_empl');

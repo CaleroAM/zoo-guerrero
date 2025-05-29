@@ -26,7 +26,7 @@
                     <!-- Buscador -->
                     <div class="card-body p-4">
                         <div class="input-group mb-3">
-                            <input type="text" id="search-input" class="form-control" placeholder="Buscar Alimentos...Ej. nombre, contenido, cantidad total">
+                            <input type="text" id="search-input" class="form-control" placeholder="Buscar Alimentos...Ej. id_alimento, Nombre, Contenido actual, Contenido total, Costo, Proveedor">
                         </div>      
                     </div>
                     <!-- Formulario para crear/editar alimentos -->

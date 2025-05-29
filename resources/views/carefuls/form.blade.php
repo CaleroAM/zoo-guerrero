@@ -23,7 +23,7 @@
         </div>
         <div class="form-group mb-2 mb20">
             <label for="amount_food" class="form-label">{{ __('Cantidad de comida') }}</label>
-            <input type="number" name="amount_food" class="form-control @error('amount_food') is-invalid @enderror" value="{{ old('amount_food', $careful?->amount_food) }}" id="amount_food" placeholder="Cantidad de comida">
+            <input type="text" name="amount_food" class="form-control @error('amount_food') is-invalid @enderror" value="{{ old('amount_food', $careful?->amount_food) }}" id="amount_food" placeholder="Cantidad de comida">
             {!! $errors->first('amount_food', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
         </div>
 
@@ -35,7 +35,7 @@
                     <option value="{{ $food->id_food }}">{{ $food->name }}</option>
                 @endforeach
             </select>
-            {!! $errors->first('fk_food', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
+            <div class="invalid-feedback"></div>
         </div>
 
         <div class="form-group mb-2 mb20">

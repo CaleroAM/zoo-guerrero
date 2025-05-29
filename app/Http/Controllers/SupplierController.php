@@ -9,6 +9,7 @@ use App\Http\Requests\SupplierRequest;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use Illuminate\Database\QueryException;
 
 class SupplierController extends Controller
 {
@@ -68,13 +69,32 @@ class SupplierController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(SupplierRequest $request, Supplier $supplier): RedirectResponse
-    {
+public function update(SupplierRequest $request, Supplier $supplier): RedirectResponse | JsonResponse
+{
+    try {
         $supplier->update($request->validated());
 
+        if ($request->expectsJson()) {
+            return response()->json(['message' => 'Proveedor actualizado exitosamente.']);
+        }
+
         return Redirect::route('suppliers.index')
-            ->with('success', 'Supplier updated successfully');
+            ->with('success', 'Proveedor actualizado exitosamente.');
+    } catch (QueryException $e) {
+        if ($e->getCode() == 23000) {
+            $errorMessage = 'El RFC ingresado ya está en uso.';
+        } else {
+            $errorMessage = 'Error inesperado al actualizar el proveedor.';
+        }
+
+        if ($request->expectsJson()) {
+            return response()->json(['message' => $errorMessage], 422);
+        }
+
+        return Redirect::route('suppliers.index')
+            ->with('error', $errorMessage);
     }
+}
 
     public function destroy($id): RedirectResponse | JsonResponse
     {

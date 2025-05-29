@@ -30,6 +30,7 @@ return [
 
     'second_name' => 'segundo nombre',
     'last_name' => 'apellido',
+    'second_last_name' => 'segundo apellido',
     'age' => 'edad',
     'Sex' => 'sexo',
     'id_boss' => 'Jefe',

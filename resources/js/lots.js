@@ -87,12 +87,70 @@ window.editFoods = function (id_lot, date_cad, portion, date_start, fk_food) {
     }
 };
 
+// Función para validar la fecha de caducidad
+function validateExpirationDate(dateValue) {
+    if (!dateValue) {
+        return 'La fecha de caducidad es requerida';
+    }
 
+    const selectedDate = new Date(dateValue + 'T00:00:00'); // Agregar tiempo para evitar problemas de zona horaria
+    const today = new Date();
+    
+    // Establecer la hora a 00:00:00 para comparar solo fechas
+    today.setHours(0, 0, 0, 0);
+
+    console.log('Fecha seleccionada:', selectedDate);
+    console.log('Fecha actual:', today);
+    console.log('Comparación (selectedDate <= today):', selectedDate <= today);
+
+    if (selectedDate <= today) {
+        return 'La fecha de caducidad debe ser posterior a la fecha actual (después del ' + 
+               today.toLocaleDateString('es-ES') + ')';
+    }
+
+    return null; // No hay error
+}
+
+// Función para mostrar errores de validación
+function showValidationError(inputId, errorMessage) {
+    const inputElement = document.getElementById(inputId);
+    const errorElement = document.getElementById(`${inputId}-error`);
+    
+    if (inputElement) {
+        inputElement.classList.add('is-invalid');
+    }
+    
+    if (errorElement) {
+        errorElement.textContent = errorMessage;
+    }
+}
 
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('lots-form');
 
     if (form) {
+        // Validación en tiempo real para la fecha de caducidad
+        const dateCadInput = document.getElementById('date_cad');
+        if (dateCadInput) {
+            dateCadInput.addEventListener('change', function() {
+                const errorMessage = validateExpirationDate(this.value);
+                const errorElement = document.getElementById('date_cad-error');
+                
+                if (errorMessage) {
+                    this.classList.add('is-invalid');
+                    if (errorElement) {
+                        errorElement.textContent = errorMessage;
+                    }
+                    toastr.error(errorMessage);
+                } else {
+                    this.classList.remove('is-invalid');
+                    if (errorElement) {
+                        errorElement.textContent = '';
+                    }
+                }
+            });
+        }
+
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
 
@@ -105,13 +163,36 @@ document.addEventListener('DOMContentLoaded', () => {
             // Validación del lado del cliente
             let isValid = true;
             
-            
-            // Validar el proveedor
+            // Validar la fecha de caducidad
+            const dateCadValue = document.getElementById('date_cad').value;
+            const dateError = validateExpirationDate(dateCadValue);
+            if (dateError) {
+                showValidationError('date_cad', dateError);
+                toastr.error(dateError);
+                isValid = false;
+            }
+
+            // Validar el alimento
             const foodsSelect = document.getElementById('fk_food');
             if (!foodsSelect.value) {
-                document.getElementById('fk_food').textContent = 'Debe seleccionar un alimento';
+                const errorElement = document.getElementById('fk_food-error');
+                if (errorElement) {
+                    errorElement.textContent = 'Debe seleccionar un alimento';
+                }
                 foodsSelect.classList.add('is-invalid');
+                toastr.error('Debe seleccionar un alimento');
                 isValid = false;
+            }
+
+            // Validar porción (opcional, puedes agregar más validaciones)
+            const portionInput = document.getElementById('portion');
+            if (portionInput && portionInput.value) {
+                const portionValue = parseFloat(portionInput.value);
+                if (isNaN(portionValue) || portionValue <= 0) {
+                    showValidationError('portion', 'La porción debe ser un número mayor a cero');
+                    toastr.error('La porción debe ser un número mayor a cero');
+                    isValid = false;
+                }
             }
 
             if (!isValid) {
@@ -222,6 +303,8 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+    
+    // Validación de formularios de eliminación
     document.addEventListener('DOMContentLoaded', function () {
         const deleteForms = document.querySelectorAll('.delete-form');
     
@@ -235,6 +318,4 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     });
-
-    
 });

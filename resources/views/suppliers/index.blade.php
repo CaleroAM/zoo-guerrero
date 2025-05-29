@@ -25,7 +25,7 @@
                     <!-- Buscador -->
                     <div class="card-body p-4">
                         <div class="input-group mb-3">
-                            <input type="text" id="search-input" class="form-control" placeholder="Buscar Zonas...Ej. Zona, sector, cantidad, tipo, clima.">
+                            <input type="text" id="search-input" class="form-control" placeholder="Buscar Proveedores...Ej. RFC, Nombre, Teléfono, Correo, Dirección, Tipo de proveedor">
                         </div>
                     </div>
 

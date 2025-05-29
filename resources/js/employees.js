@@ -39,7 +39,7 @@ window.cancelForm = function () {
     }
 };
 
-window.editEmployees = function (id_employee, name, second_name, last_name, age, Sex, type_empl, id_boss, fk_shift) {
+window.editEmployees = function (id_employee, name, second_name, last_name, second_last_name, age, Sex, type_empl, id_boss, fk_shift) {
     const formContainer = document.getElementById('employeesFormContainer');
     const form = document.getElementById('employees-form');
 
@@ -59,6 +59,7 @@ window.editEmployees = function (id_employee, name, second_name, last_name, age,
         document.getElementById('name').value = name;
         document.getElementById('second_name').value = second_name;
         document.getElementById('last_name').value = last_name;
+        document.getElementById('second_last_name').value = second_last_name;
         document.getElementById('age').value = age;
 
         // Establecer correctamente el valor del sexo (radio buttons)
@@ -305,13 +306,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const name = this.getAttribute('data-name');
             const second_name = this.getAttribute('data-second_name');
             const last_name = this.getAttribute('data-last_name');
+            const second_last_name = this.getAttribute('data-second_last_name');
             const age = this.getAttribute('data-age');
             const Sex = this.getAttribute('data-sex'); 
             const type_empl = this.getAttribute('data-type_empl');
             const id_boss = this.getAttribute('data-id_boss');
             const fk_shift = this.getAttribute('data-fk_shift');
 
-            window.editEmployees(id_employee, name, second_name, last_name, age, Sex, type_empl, id_boss, fk_shift);
+            window.editEmployees(id_employee, name, second_name, last_name, second_last_name, age, Sex, type_empl, id_boss, fk_shift);
         });
     });
 

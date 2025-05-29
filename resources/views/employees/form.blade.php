@@ -21,6 +21,11 @@
             {!! $errors->first('last_name', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
         </div>
         <div class="form-group mb-2 mb20">
+            <label for="second_last_name" class="form-label">{{ __('Segundo Apellido') }}</label>
+            <input type="text" name="second_last_name" class="form-control @error('second_last_name') is-invalid @enderror" value="{{ old('second_last_name', $employee?->second_last_name) }}" id="second_last_name" placeholder="Apellido">
+            {!! $errors->first('second_last_name', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
+        </div>
+        <div class="form-group mb-2 mb20">
             <label for="age" class="form-label">{{ __('Edad') }}</label>
             <input type="number" name="age" class="form-control @error('age') is-invalid @enderror" value="{{ old('age', $employee?->age) }}" id="age" placeholder="Edad">
             {!! $errors->first('age', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
@@ -83,5 +88,16 @@
 
         </div>
 
+    </div>
+<!-- Botón para mostrar/ocultar datos personales -->
+    <div class="form-group mb-3">
+        <button type="button" class="btn btn-outline-info" id="toggle-personal-data-btn">
+            <i class="fas fa-id-card"></i> Datos personales (opcional)
+        </button>
+    </div>
+
+    <!-- Contenedor oculto del formulario de dates -->
+    <div id="personal-data-form" class="mt-3" style="display: none;">
+        @include('dates.form')
     </div>
 </div>
