@@ -33,7 +33,7 @@
         <div class="col-md-6 col-lg-3">
             <div class="card h-100 text-center shadow-sm">
                 <a href="{{ route('species.index') }}" class="stretched-link"></a>
-                <img src="{{ asset('images/especies.png') }}" class="card-img-top p-3" alt="Especies">
+                <img src="{{ asset('images/especies.png') }}" class="card-img p-3 rounded" style="height: 180px; object-fit: cover;" alt="Especies">
                 <div class="card-body">
                     <h5 class="card-title fw-bold">Especies</h5>
                     <p class="card-text">Registro de especies y su estado de conservación</p>
@@ -44,7 +44,7 @@
         <div class="col-md-6 col-lg-3">
             <div class="card h-100 text-center shadow-sm">
                 <a href="{{ route('zones.index') }}" class="stretched-link"></a>
-                <img src="{{ asset('images/zonas.png') }}" class="card-img-top p-3" alt="Zonas">
+                <img src="{{ asset('images/zonas.png') }}" class="card-img p-3 rounded" style="height: 180px; object-fit: cover;" alt="Zonas">
                 <div class="card-body">
                     <h5 class="card-title fw-bold">Zonas</h5>
                     <p class="card-text">Distribución de especies en el zoológico</p>
@@ -55,7 +55,7 @@
         <div class="col-md-6 col-lg-3">
             <div class="card h-100 text-center shadow-sm">
                 <a href="{{ route('suppliers.index') }}" class="stretched-link"></a>
-                <img src="{{ asset('images/proveedores.png') }}" class="card-img-top p-3" alt="Proveedores">
+                <img src="{{ asset('images/proveedores.png') }}" class="card-img p-3 rounded" style="height: 180px; object-fit: cover;" alt="Proveedores">
                 <div class="card-body">
                     <h5 class="card-title fw-bold">Proveedores</h5>
                     <p class="card-text">Gestión de proveedores y suministros</p>
@@ -66,7 +66,7 @@
         <div class="col-md-6 col-lg-3">
             <div class="card h-100 text-center shadow-sm">
                 <a href="{{ route('shifts.index') }}" class="stretched-link"></a>
-                <img src="{{ asset('images/turnos.png') }}" class="card-img-top p-3" alt="Turnos">
+                <img src="{{ asset('images/turnos.png') }}" class="card-img p-3 rounded" style="height: 180px; object-fit: cover;" alt="Turnos">
                 <div class="card-body">
                     <h5 class="card-title fw-bold">Turnos</h5>
                     <p class="card-text">Control de horarios y turnos del personal</p>
@@ -77,7 +77,7 @@
         <div class="col-md-6 col-lg-3">
             <div class="card h-100 text-center shadow-sm">
                 <a href="{{ route('foods.index') }}" class="stretched-link"></a>
-                <img src="{{ asset('images/alimento.png') }}" class="card-img-top p-3" alt="Alimento">
+                <img src="{{ asset('images/alimento.png') }}" class="card-img p-3 rounded" style="height: 180px; object-fit: cover;" alt="Alimento">
                 <div class="card-body">
                     <h5 class="card-title fw-bold">Alimento</h5>
                     <p class="card-text">Registro de alimentos y su distribución</p>
@@ -88,7 +88,7 @@
         <div class="col-md-6 col-lg-3">
             <div class="card h-100 text-center shadow-sm">
                 <a href="{{ route('lots.index') }}" class="stretched-link"></a>
-                <img src="{{ asset('images/lotes.png') }}" class="card-img-top p-3" alt="Lotes">
+                <img src="{{ asset('images/lotes.png') }}" class="card-img p-3 rounded" style="height: 180px; object-fit: cover;" alt="Lotes">
                 <div class="card-body">
                     <h5 class="card-title fw-bold">Lotes</h5>
                     <p class="card-text">Control de lotes de alimentos y su gestión</p>
@@ -99,7 +99,7 @@
         <div class="col-md-6 col-lg-3">
             <div class="card h-100 text-center shadow-sm">
                 <a href="{{ route('dates.index') }}" class="stretched-link"></a>
-                <img src="{{ asset('images/datos.png') }}" class="card-img-top p-3" alt="Datos">
+                <img src="{{ asset('images/datos.png') }}" class="card-img p-3 rounded" style="height: 180px; object-fit: cover;" alt="Datos">
                 <div class="card-body">
                     <h5 class="card-title fw-bold">Datos</h5>
                     <p class="card-text">Registro de datos de los empleados</p>
@@ -110,7 +110,7 @@
         <div class="col-md-6 col-lg-3">
             <div class="card h-100 text-center shadow-sm">
                 <a href="{{ route('employees.index') }}" class="stretched-link"></a>
-                <img src="{{ asset('images/empleados.png') }}" class="card-img-top p-3" alt="Empleados">
+                <img src="{{ asset('images/empleados.png') }}" class="card-img p-3 rounded" style="height: 180px; object-fit: cover;" alt="Empleados">
                 <div class="card-body">
                     <h5 class="card-title fw-bold">Empleados</h5>
                     <p class="card-text">Gestión de empleados y su información</p>
@@ -121,7 +121,7 @@
         <div class="col-md-6 col-lg-3">
             <div class="card h-100 text-center shadow-sm">
                 <a href="{{ route('empshifts.index') }}" class="stretched-link"></a>
-                <img src="{{ asset('images/horas.png') }}" class="card-img-top p-3" alt="Horas trabajadas">
+                <img src="{{ asset('images/horas.png') }}" class="card-img p-3 rounded" style="height: 180px; object-fit: cover;" alt="Horas trabajadas">
                 <div class="card-body">
                     <h5 class="card-title fw-bold">Horas trabajadas</h5>
                     <p class="card-text">Control de horas trabajadas por empleado</p>
@@ -132,7 +132,7 @@
         <div class="col-md-6 col-lg-3">
             <div class="card h-100 text-center shadow-sm position-relative">
                 <a href="{{ route('animals.index') }}" class="stretched-link"></a>
-                <img src="{{ asset('images/animales.png') }}" class="card-img-top p-3" alt="Animales">
+                <img src="{{ asset('images/animales.png') }}" class="card-img p-3 rounded" style="height: 180px; object-fit: cover;" alt="Animales">
                 <div class="card-body">
                     <h5 class="card-title fw-bold">Animales</h5>
                     <p class="card-text">Gestión de especies y ejemplares</p>
@@ -143,7 +143,7 @@
         <div class="col-md-6 col-lg-3">
             <div class="card h-100 text-center shadow-sm">
                 <a href="{{ route('carefuls.index') }}" class="stretched-link"></a>
-                <img src="{{ asset('images/cuidados.png') }}" class="card-img-top p-3" alt="Cuidados">
+                <img src="{{ asset('images/cuidados.png') }}" class="card-img p-3 rounded" style="height: 180px; object-fit: cover;" alt="Cuidados">
                 <div class="card-body">
                     <h5 class="card-title fw-bold">Cuidados</h5>
                     <p class="card-text">Registro de cuidados y tratamientos</p>
@@ -152,4 +152,5 @@
         </div>
     </div>
 </div>
+@vite('resources/css/custom.css')
 @endsection

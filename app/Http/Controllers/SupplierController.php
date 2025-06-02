@@ -10,7 +10,6 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use Illuminate\Database\QueryException;
-
 class SupplierController extends Controller
 {
     /**
@@ -69,60 +68,39 @@ class SupplierController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(SupplierRequest $request, Supplier $supplier): RedirectResponse | JsonResponse
-    {
-        try {
-            // Verificar si el RFC ha cambiado
-            if ($supplier->rfc !== $request->input('rfc')) {
-                // Si ha cambiado, devolver un error
-                if ($request->expectsJson()) {
-                    return response()->json([
-                        'message' => 'No se puede modificar el RFC de un proveedor registrado.'
-                    ], 422);
-                }
-                
-                return Redirect::back()
-                    ->withInput()
-                    ->with('error', 'No se puede modificar el RFC de un proveedor registrado.');
-            }
-            
-            $supplier->update($request->validated());
+public function update(SupplierRequest $request, Supplier $supplier): RedirectResponse | JsonResponse
+{
+    try {
+        $supplier->update($request->validated());
 
-            if ($request->expectsJson()) {
-                return response()->json([
-                    'message' => 'Proveedor actualizado exitosamente'
-                ]);
-            }
-
-            return Redirect::route('suppliers.index')
-                ->with('success', 'Proveedor actualizado exitosamente');
-                
-        } catch (QueryException $e) {
-            // En caso de cualquier otro error de base de datos
-            if ($request->expectsJson()) {
-                return response()->json([
-                    'message' => 'No se puede actualizar el proveedor. Verifica los datos e intenta de nuevo.'
-                ], 422);
-            }
-            
-            return Redirect::back()
-                ->withInput()
-                ->with('error', 'No se puede actualizar el proveedor. Verifica los datos e intenta de nuevo.');
+        if ($request->expectsJson()) {
+            return response()->json(['message' => 'Proveedor actualizado exitosamente.']);
         }
+
+        return Redirect::route('suppliers.index')
+            ->with('success', 'Proveedor actualizado exitosamente.');
+    } catch (QueryException $e) {
+        if ($e->getCode() == 23000) {
+            $errorMessage = 'El RFC ingresado ya está en uso por otro proveedor.';
+        } else {
+            $errorMessage = 'Error inesperado al actualizar el proveedor.';
+        }
+
+        if ($request->expectsJson()) {
+            return response()->json(['message' => $errorMessage], 422);
+        }
+
+        return Redirect::route('suppliers.index')
+            ->with('error', $errorMessage);
     }
+}
 
     public function destroy($id): RedirectResponse | JsonResponse
     {
-        try {
-            $suppliers = Supplier::find($id);
-            $suppliers->delete();
-            
-            return Redirect::route('suppliers.index')
-                ->with('success', 'Proveedor eliminado exitosamente');
-                
-        } catch (QueryException $e) {
-            return Redirect::route('suppliers.index')
-                ->with('error', 'No se puede eliminar el proveedor porque tiene registros relacionados.');
-        }
+        $suppliers = Supplier::find($id);
+        $suppliers->delete();
+
+        return Redirect::route('suppliers.index')
+            ->with('success', 'Proveedor eliminado exitosamente');
     }
 }

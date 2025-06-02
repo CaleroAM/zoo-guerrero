@@ -22,13 +22,13 @@ class CarefulRequest extends FormRequest
     public function rules(): array
     {
         return [
-			'date_start' => 'required',
-			'hours' => 'required',
-			'treatment' => 'required|string',
-			'amount_food' => 'required',
-			'fk_food' => 'required',
-			'fk_employee' => 'required',
-			'fk_animal' => 'required',
+            'date_start' => 'required',
+            'hours' => 'required',
+            'treatment' => 'required|string',
+            'amount_food' => 'nullable',
+            'fk_food' => 'nullable',
+            'fk_employee' => 'required',
+            'fk_animal' => 'required',
         ];
     }
 }

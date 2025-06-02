@@ -16,8 +16,8 @@ return new class extends Migration
             $table->date('date_start');
             $table->time('hours');
             $table->string('treatment', 50);
-            $table->decimal('amount_food',8,2);
-            $table->unsignedBigInteger('fk_food');
+            $table->decimal('amount_food',8,2)->nullable();
+            $table->unsignedBigInteger('fk_food')->nullable();
             $table->unsignedBigInteger('fk_employee');
             $table->unsignedBigInteger('fk_animal');
             $table->foreign('fk_food')->references('id_food')->on('foods')->onDelete('cascade');

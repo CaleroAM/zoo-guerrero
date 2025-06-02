@@ -67,7 +67,8 @@ class EmployeeController extends Controller
         $employee = Employee::find($id);
         $bosses = Employee::all();
         $shifts = Shift::all();
-        return view('employees.edit', compact('employee', 'bosses', 'shifts'));
+        $date = $employee->date ?? new \App\Models\Date();
+        return view('employees.edit', compact('employee', 'bosses', 'shifts', 'date'));
     }
 
     /**

@@ -12,17 +12,17 @@
         </div>
         <div class="form-group mb-2 mb20">
             <label for="content" class="form-label">{{ __('Contenido') }}</label>
-            <input type="text" name="content" class="form-control @error('content') is-invalid @enderror" value="{{ old('content', $food?->content) }}" id="content" placeholder="Contenido">
+            <input type="text" name="content" class="form-control @error('content') is-invalid @enderror" value="{{ old('content', $food?->content) }}" id="content" placeholder="Contenido...Kg, L, etc.">
             {!! $errors->first('content', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
         </div>
         <div class="form-group mb-2 mb20">
             <label for="total_amount" class="form-label">{{ __('Contenido total') }}</label>
-            <input type="number" name="total_amount" class="form-control @error('total_amount') is-invalid @enderror" value="{{ old('total_amount', $food?->total_amount) }}" id="total_amount" placeholder="Conenido total">
+            <input type="text" name="total_amount" class="form-control @error('total_amount') is-invalid @enderror" value="{{ old('total_amount', $food?->total_amount) }}" id="total_amount" placeholder="Conenido total...Kg, L, etc.">
             {!! $errors->first('total_amount', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
         </div>
         <div class="form-group mb-2 mb20">
             <label for="cost" class="form-label">{{ __('Costo') }}</label>
-            <input type="number" name="cost" class="form-control @error('cost') is-invalid @enderror" value="{{ old('cost', $food?->cost) }}" id="cost" placeholder="Costo">
+            <input type="text" name="cost" class="form-control @error('cost') is-invalid @enderror" value="{{ old('cost', $food?->cost) }}" id="cost" placeholder="Costo...$">
             {!! $errors->first('cost', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
         </div>
         <div class="form-group mb-2 mb20">

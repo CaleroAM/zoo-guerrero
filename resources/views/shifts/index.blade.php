@@ -26,7 +26,7 @@
                     <!-- Buscador -->
                     <div class="card-body p-4">
                         <div class="input-group mb-3">
-                            <input type="text" id="search-input" class="form-control" placeholder="Buscar Turnos...Ej. id turno, descripción, hora de inicio, hora de fin">
+                            <input type="text" id="search-input" class="form-control" placeholder="Buscar Turnos...Ej. id_turno, Descripción, Hora de inicio, Hora de fin">
                         </div>
                     </div>
                     <!-- Formulario para crear/editar turnos -->

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    {{ __('Update') }} Date
+    {{ __('Update') }} Employee
 @endsection
 
 @section('content')
@@ -11,15 +11,18 @@
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">{{ __('Update') }} Date</span>
+                        <span class="card-title">{{ __('Update') }} Employee</span>
                     </div>
                     <div class="card-body bg-white">
-                        <form method="POST" action="{{ route('dates.update', $date->id_date) }}"  role="form" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('employees.update', $employee->id_employee) }}"  role="form" enctype="multipart/form-data">
                             {{ method_field('PATCH') }}
                             @csrf
 
-                            @include('date.form')
-
+                            @include('employees.form')
+                            @include('dates.form', [
+                                'date' => $employee->date ?? null, 
+                                'employees' => \App\Models\Employee::all()
+                            ])
                         </form>
                     </div>
                 </div>

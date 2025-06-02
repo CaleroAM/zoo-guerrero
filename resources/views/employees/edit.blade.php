@@ -14,12 +14,16 @@
                         <span class="card-title">{{ __('Update') }} Employee</span>
                     </div>
                     <div class="card-body bg-white">
+                        @php
+                            $date = $employee->date ?? new \App\Models\Date();
+                            $employees = \App\Models\Employee::all();
+                        @endphp
                         <form method="POST" action="{{ route('employees.update', $employee->id_employee) }}"  role="form" enctype="multipart/form-data">
                             {{ method_field('PATCH') }}
                             @csrf
 
                             @include('employees.form')
-
+                             @include('dates.form', ['date' => $date, 'employee' => $employee])
                         </form>
                     </div>
                 </div>

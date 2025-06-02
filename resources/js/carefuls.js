@@ -90,7 +90,7 @@ window.editAnimals = function (id_careful, date_start, hours, treatment, amount_
             }
             
             if (fk_employee && !Array.from(employeesSelect.options).some(option => option.value === fk_employee.toString())) {
-                toastr.warning('La zona seleccionada anteriormente ya no está disponible.');
+                toastr.warning('El empleado seleccionado anteriormente ya no está disponible.');
                 employeesSelect.value = '';
             }
         }
@@ -105,7 +105,7 @@ window.editAnimals = function (id_careful, date_start, hours, treatment, amount_
             }
             
             if (fk_animal && !Array.from(animalsSelect.options).some(option => option.value === fk_animal.toString())) {
-                toastr.warning('La zona seleccionada anteriormente ya no está disponible.');
+                toastr.warning('El animal seleccionado anteriormente ya no está disponible.');
                 animalsSelect.value = '';
             }
         }
@@ -118,8 +118,6 @@ window.editAnimals = function (id_careful, date_start, hours, treatment, amount_
         formContainer.scrollIntoView({ behavior: 'smooth' });
     }
 };
-
-
 
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('carefuls-form');
@@ -137,40 +135,47 @@ document.addEventListener('DOMContentLoaded', () => {
             // Validación del lado del cliente
             let isValid = true;
             
+            // Validar campos requeridos
+            const requiredFields = [
+                { id: 'date_start', message: 'La fecha de inicio es requerida' },
+                { id: 'hours', message: 'Las horas son requeridas' },
+                { id: 'treatment', message: 'El tratamiento es requerido' },
+                { id: 'fk_employee', message: 'Debe seleccionar un empleado' },
+                { id: 'fk_animal', message: 'Debe seleccionar un animal' }
+            ];
+
+            requiredFields.forEach(field => {
+                const element = document.getElementById(field.id);
+                if (element && !element.value.trim()) {
+                    // Buscar el contenedor de error
+                    const errorContainer = element.parentNode.querySelector('.invalid-feedback');
+                    if (errorContainer) {
+                        errorContainer.textContent = field.message;
+                    }
+                    element.classList.add('is-invalid');
+                    isValid = false;
+                }
+            });
+
+            // NO validamos fk_food porque es opcional
+            // Si amount_food tiene valor, entonces fk_food debería tener valor también (lógica opcional)
+            const amountFood = document.getElementById('amount_food');
+            const foodSelect = document.getElementById('fk_food');
             
-           
-            const foodsSelect = document.getElementById('fk_food')
-            if (!foodsSelect.value) {
-                document.getElementById('fk_food').textContent = 'Debe seleccionar un alimento';
-                foodsSelect.classList.add('is-invalid');
+            if (amountFood && amountFood.value.trim() && foodSelect && !foodSelect.value) {
+                const errorContainer = foodSelect.parentNode.querySelector('.invalid-feedback');
+                if (errorContainer) {
+                    errorContainer.textContent = 'Si especifica cantidad de comida, debe seleccionar un alimento';
+                }
+                foodSelect.classList.add('is-invalid');
                 isValid = false;
             }
 
             if (!isValid) {
-                return;
+                return; // Detener aquí si hay errores
             }
 
-            const employeesSelect = document.getElementById('fk_employee')
-            if (!employeesSelect.value) {
-                document.getElementById('fk_employee').textContent = 'Debe seleccionar un alimento';
-                employeesSelect.classList.add('is-invalid');
-                isValid = false;
-            }
-
-            if (!isValid) {
-                return;
-            }
-
-            const animalsSelect = document.getElementById('fk_animal')
-            if (!animalsSelect.value) {
-                document.getElementById('fk_animal').textContent = 'Debe seleccionar un alimento';
-                animalsSelect.classList.add('is-invalid');
-                isValid = false;
-            }
-
-            if (!isValid) {
-                return;
-            }
+            // Resto del código de envío
             const formData = new FormData(form);
             const url = form.getAttribute('action');
             const method = document.getElementById('form-method').value;
@@ -204,7 +209,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             if (data.errors) {
                                 Object.keys(data.errors).forEach(key => {
                                     const inputElement = document.getElementById(key);
-                                    const errorElement = document.getElementById(`${key}-error`);
+                                    const errorElement = inputElement?.parentNode?.querySelector('.invalid-feedback');
                                     
                                     if (inputElement && errorElement) {
                                         inputElement.classList.add('is-invalid');
@@ -278,19 +283,17 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
-    document.addEventListener('DOMContentLoaded', function () {
-        const deleteForms = document.querySelectorAll('.delete-form');
-    
-        deleteForms.forEach(form => {
-            form.addEventListener('submit', function (e) {
-                e.preventDefault(); // Evita el envío inmediato
-    
-                if (confirm('¿Estás seguro de que deseas eliminar este elemento? Esta acción no se puede deshacer.')) {
-                    form.submit(); // Envía el formulario si el usuario confirma
-                }
-            });
+
+    // Manejo de eliminación con confirmación
+    const deleteForms = document.querySelectorAll('.delete-form');
+
+    deleteForms.forEach(form => {
+        form.addEventListener('submit', function (e) {
+            e.preventDefault(); // Evita el envío inmediato
+
+            if (confirm('¿Estás seguro de que deseas eliminar este elemento? Esta acción no se puede deshacer.')) {
+                form.submit(); // Envía el formulario si el usuario confirma
+            }
         });
     });
-
-    
 });

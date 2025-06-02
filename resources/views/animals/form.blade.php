@@ -17,7 +17,7 @@
         </div>
         <div class="form-group mb-2 mb20">
             <label for="height" class="form-label">{{ __('Altura') }}</label>
-            <input type="number" name="height" class="form-control @error('height') is-invalid @enderror" value="{{ old('height', $animal?->height) }}" id="height" placeholder="Altura">
+            <input type="number" name="height" class="form-control @error('height') is-invalid @enderror" value="{{ old('height', $animal?->height) }}" id="height" placeholder="Altura en cm">
             {!! $errors->first('height', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
         </div>
         <div class="form-group mb-2 mb20">
