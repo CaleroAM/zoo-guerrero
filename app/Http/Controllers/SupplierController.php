@@ -104,3 +104,8 @@ public function update(SupplierRequest $request, Supplier $supplier): RedirectRe
             ->with('success', 'Proveedor eliminado exitosamente');
     }
 }
+/*
+*
+*CLI
+*
+*/
